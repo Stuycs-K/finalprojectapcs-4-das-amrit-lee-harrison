@@ -11,5 +11,5 @@ Harrison Lee
 
 2 The second idea we had was to recreate the game of scrabble. The game begins with each player drawing 7 letters, this is the maximum letters a player can hold. After a player's turn is up, the player automatically draws (7 - current letters) letters from the game's pool of letters. We would recreate the board and add the multipliers on the specific squares(2x word score, 3x letter score, etc). There would also be a limited pool of letters that the game has. Once the pool of letters have been drained, the game is over. We'll track the score for each individual player and whoever has the highest score by the end, is declared the winner. We'd also ideally have a round timer for each turn to ensure each player doesn't stall. One problem we might have is including a database of all legal scrabble words. This would be a challenge we would have to figure out.
 
-3 statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
+3 For this proposal we are thinking about modeling something-especially with regards to sports. We were thinking about potentially using statistics and data from online in order to help to model and predict sports games that are coming up. We would use things such as probability and the most up-to-date information. We plan on focusing on soccer specifically.
 
