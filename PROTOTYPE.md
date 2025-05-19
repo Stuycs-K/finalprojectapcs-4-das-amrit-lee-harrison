@@ -23,3 +23,13 @@ How you are breaking down the project and who is responsible for which parts.
 
 A timeline with expected completion dates of parts of the project. (CHANGE THIS!!!!!)
 
+Phase 1(deadline- Tuesday after Memorial Day): After finalizing details, two things: 1) Find the dictionary(dictionaries) we want to use. 2) Start coding on the Tile Class
+
+Phase 2(deadline- 5/30): 1) Start working on animation part of the game and try to figure out how to work on not making the game lag
+
+Phase 3(deadline-6/6): 1) Ensuring the game actually works
+
+Phase 4(deadline- 6/13[due date]): 1) Debugging and adding anything potentially useful
+
+
+
