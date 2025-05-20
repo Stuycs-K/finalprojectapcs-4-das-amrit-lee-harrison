@@ -17,6 +17,13 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 Harrison- Diagrams
 
+Classes- Tile, Board, PlayerAccess, ArrayList, Word
+
+The Tile class will be the Parent class of this game. It will have the child of the Board. The constructor for a Tile will be letter, type, size, position(x and y coordinate). We will also implement the use of dictionaries here.
+
+The Board class will be a child class of the Tile and will use the lessons learned from Maze Carver and our wildfire modeling in order to create the board where the player can play. We will implement modifications in order to ensure that the board is playable and in order to collect important data, most notably, the length of the word.
+
+The PlayerAcess will utilize multiple ArrayLists and is the main class that the player will be using.
 
     
 # Intended pacing:
