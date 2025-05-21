@@ -17,6 +17,11 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 
 Harrison- Diagrams
 
+
+![image](https://github.com/user-attachments/assets/ef51e1e5-c39a-4802-9ca0-404d57d006fb)
+
+
+
 Classes- Tile, Board, PlayerAccess, ArrayList, Word
 
 The Tile class will be the Parent class of this game. It will have the child of the Board. The constructor for a Tile will be letter, type, size, position(x and y coordinate). We will also implement the use of dictionaries here.
