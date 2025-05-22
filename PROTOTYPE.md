@@ -18,7 +18,9 @@ UML Diagrams and descriptions of key algorithms, classes, and how things fit tog
 Harrison- Diagrams
 
 
-![image](https://github.com/user-attachments/assets/ef51e1e5-c39a-4802-9ca0-404d57d006fb)
+~~![image](https://github.com/user-attachments/assets/ef51e1e5-c39a-4802-9ca0-404d57d006fb)~~
+![image](https://github.com/user-attachments/assets/34ecaef7-f8b5-40c8-9e6d-fea6416e87e4)
+
 
 
 
