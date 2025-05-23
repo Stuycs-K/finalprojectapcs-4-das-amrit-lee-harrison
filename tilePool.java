@@ -2,8 +2,11 @@ import java.util.*;
 import java.io.*;
 
 public class tilePool.java{
-    private ArrayList<String> dict = new ArrayList<String>();
-    private void addDict(String filename){
-        
-    }
+    private ArrayList<Tile> tilePool;
+
+    public tilePool() {
+
+    private final int[] tileFrequency = { 9,2,2,4,12,2,3,2,9,1,1,4,2,6,8,2,1,6,4,6,4,2,2,1,2,1};
+
+}
 }
