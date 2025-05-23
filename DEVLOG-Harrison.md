@@ -11,4 +11,6 @@ Spent about 5 minutes testing the tile getMethods to ensure that the values are 
 **Home**
 Spent about 25 minutes learning branching and making the tilePool constructor which adds the correct frequency of letters in the pool
 
-### 2024-01-03 - Brief description
+### 2024-05-23 - Brief description
+**Class**
+Spent 30 minutes discussing game design choices and updating my UML.
