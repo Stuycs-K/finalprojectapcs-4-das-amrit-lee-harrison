@@ -25,3 +25,4 @@ In- class:
 
 At- Home:
 10 mins- working on creating compatiability between the player class and the board class
+10 mins- working on processing(not added to git yet--currently just experimenting)
