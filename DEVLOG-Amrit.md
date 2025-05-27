@@ -19,3 +19,5 @@ During class(40mins)- I have started to think more about the implementation of t
 
 ## 2025-05-26- Brief Description
 
+5 mins- worked on brainstorming and better planning how to create the board for the game in the Board class as well as creating multiple arrays
+
