@@ -24,4 +24,12 @@ public class tilePool {
         }
         return Arrays.toString(letters);
     }
+//gets amount number of tiles from tilePool and puts them in an ArrayList
+    public ArrayList<Tile> removeTiles(int amount) {
+      ArrayList<Tile> removedTiles = new ArrayList<Tile(amount);
+      for (int i =0; i < amount; i++) {
+        int random = (int) (Math.random() * tilePool.size());
+        removedTiles.add(tilePool.remove(random));
+      }
+    }
 }
