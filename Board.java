@@ -2,9 +2,15 @@ import java.util.*;
 import java.io.*;
 
 public class Board{
-    private static char[][] board = new char[15][15];
-    private static int[][] lettermultipliers = new char[15][15];
-    private static int[][] wordmultipliers = new char[15][15];
+    private static char[][] board;
+    private static int[][] lettermultipliers;
+    private static int[][] wordmultipliers;
+    
+    public Board(){
+        board = new char[15][15];
+        lettermultipliers = new int[15][15];
+        wordmultipliers = new int[15][15];
+    }
 
     public static void lettering(){
         lettermultipliers[0][3] = 2;
@@ -66,6 +72,7 @@ public class Board{
 
     }
     public static void main(String[] args){
-        
+        lettering();
+        wording();
     }
 }

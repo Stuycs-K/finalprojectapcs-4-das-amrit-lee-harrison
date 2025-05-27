@@ -18,7 +18,10 @@ During class(40mins)- I have started to think more about the implementation of t
 5 mins- brainstorming about how to use maze carver to create the board and testing of comparisons
 
 ## 2025-05-26- Brief Description
-
+In- class:
 10 mins- worked on brainstorming and better planning how to create the board for the game in the Board class as well as creating multiple arrays
 15mins- manually writing the multipliers for the letters on the board
 10mins- manually writing the multipliers for the words on the board
+
+At- Home:
+10 mins- working on creating compatiability between the player class and the board class
