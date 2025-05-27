@@ -7,5 +7,12 @@ This document must be updated daily every time you finish a work session.
 ### 2025-05-22 - Brief description
 I, really quickly, created each of the classes. And I have started to think about implementation.
 
-### 2024-01-03 - Brief description
-Expanded description including how much time was spent on task.
+### 2024-05-23 - Brief description
+
+During class(40mins)- I have started to think more about the implementation of tiles and the dictionary--especially how they work together. I am starting to code using the Scanner classses.
+
+## 2024-05-25- Brief Description
+
+5 mins - worked on understanding branching
+15 mins- working on scanner classes and working on using binary search in order to find the words
+5 mins- brainstorming about how to use maze carver to create the board and testing of comparisons

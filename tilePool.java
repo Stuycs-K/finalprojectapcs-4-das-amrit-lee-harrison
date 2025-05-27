@@ -3,7 +3,8 @@ import java.io.*;
 
 public class tilePool {
     private ArrayList<Tile> tilePool = new ArrayList<>();
-
+    private ArrayList<String> dicts = new ArrayList<String>();
+    
     public tilePool() {
         int[] tileFrequency = { 9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1,
                 2, 1 };
@@ -23,5 +24,18 @@ public class tilePool {
             letters[i] = tilePool.get(i).getLetter();
         }
         return Arrays.toString(letters);
+    }
+
+    public void reader(String name){
+        try{
+            File file = new File(name);
+            Scanner sc = new Scanner(file);
+            while(sc.hasNextLine()){
+                dicts.add(sc.nextLine());
+            }
+        } catch (FileNotFoundException ex){
+            System.out.println("Dictionary not found");
+            return;
+        }
     }
 }
