@@ -4,6 +4,7 @@ import java.io.*;
 public class Player{
     private String name;
     private int point = 0;
+    ArrayList<Tile> current = new ArrayList<>();
     public Player(String n){
         name = n;
     }
