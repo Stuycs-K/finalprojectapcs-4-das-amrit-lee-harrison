@@ -53,6 +53,16 @@ public class Board{
             wordmultipliers[x][x] = 2;
             wordmultipliers[14 - x][14 - x] = 2;
         }
+        for(int x = 10; x < 14; x++){
+            wordmultipliers[x][x] = 2;
+            wordmultipliers[14 - x][14 - x] = 2;
+        }
+        wordmultipliers[14][0] = 3;
+        wordmultipliers[14][7] = 3;
+        wordmultipliers[14][14] = 3;
+        wordmultipliers[7][0] = 3;
+        wordmultipliers[7][7] = 3;
+        wordmultipliers[7][14] = 3;
 
     }
     public static void main(String[] args){
