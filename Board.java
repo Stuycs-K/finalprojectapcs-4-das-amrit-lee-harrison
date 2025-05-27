@@ -44,6 +44,17 @@ public class Board{
         lettermultipliers[14][3] = 2;
         lettermultipliers[14][11] = 2;
     }
+
+    public static void wording(){
+        wordmultipliers[0][0] = 3;
+        wordmultipliers[0][7] = 3;
+        wordmultipliers[0][14] = 3;
+        for(int x = 1; x < 4; x++){
+            wordmultipliers[x][x] = 2;
+            wordmultipliers[14 - x][14 - x] = 2;
+        }
+
+    }
     public static void main(String[] args){
         
     }
