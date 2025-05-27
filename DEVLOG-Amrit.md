@@ -14,4 +14,5 @@ During class(40mins)- I have started to think more about the implementation of t
 ## 2024-05-25- Brief Description
 
 5 mins - worked on understanding branching
-20 mins- working on scanner classes
+15 mins- working on scanner classes and working on using binary search in order to find the words
+5 mins- brainstorming about how to use maze carver to create the board and testing of comparisons
