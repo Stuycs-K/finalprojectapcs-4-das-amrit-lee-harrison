@@ -14,7 +14,9 @@ public class Player{
     score += amount;
   }
 
-  public drawTiles(int amount) {
-
+  public drawTiles(ArrayList<Tile> tilesToBeDrawn) {
+    for (int i =0; i< tilesToBeDrawn.size(); i++) {
+      hand.add(tilesToBeDrawn.get(i);
+    }
   }
 }
