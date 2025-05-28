@@ -1,3 +1,6 @@
+import java.util.*;
+import java.io.*;
+
 public class Player{
   private String name;
   private int score;
@@ -12,6 +15,6 @@ public class Player{
   }
 
   public drawTiles(int amount) {
-    
+
   }
 }
