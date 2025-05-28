@@ -25,17 +25,4 @@ public class tilePool {
         }
         return Arrays.toString(letters);
     }
-
-    public void reader(String name){
-        try{
-            File file = new File(name);
-            Scanner sc = new Scanner(file);
-            while(sc.hasNextLine()){
-                dicts.add(sc.nextLine());
-            }
-        } catch (FileNotFoundException ex){
-            System.out.println("Dictionary not found");
-            return;
-        }
-    }
 }
