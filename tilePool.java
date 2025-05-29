@@ -3,8 +3,7 @@ import java.io.*;
 
 public class tilePool {
     private ArrayList<Tile> tilePool = new ArrayList<>();
-    private ArrayList<String> dicts = new ArrayList<String>();
-    
+
     public tilePool() {
         int[] tileFrequency = { 9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1,
                 2, 1 };
@@ -27,10 +26,11 @@ public class tilePool {
     }
 //gets amount number of tiles from tilePool and puts them in an ArrayList
     public ArrayList<Tile> removeTiles(int amount) {
-      ArrayList<Tile> removedTiles = new ArrayList<Tile(amount);
+      ArrayList<Tile> removedTiles = new ArrayList<Tile>(amount);
       for (int i =0; i < amount; i++) {
         int random = (int) (Math.random() * tilePool.size());
         removedTiles.add(tilePool.remove(random));
       }
+      return removedTiles;
     }
 }
