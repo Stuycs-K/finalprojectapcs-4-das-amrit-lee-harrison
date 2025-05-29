@@ -9,7 +9,7 @@ public class Dictionary{
             File file = new File(name);
             Scanner sc = new Scanner(file);
             while(sc.hasNextLine()){
-                dicts.add(sc.nextLine());
+                possibilities.add(sc.nextLine());
             }
         } catch (FileNotFoundException ex){
             System.out.println("Dictionary not found");
@@ -24,12 +24,13 @@ public class Dictionary{
         while(lo <= end){
             if(input.compareTo(possibilities.get(mid)) < 0){
                 end = possibilities.size() / 2;
-            } else if(input.compareTo(possibilities.get(mid) > 0)){
+            } else if(input.compareTo(possibilities.get(mid)) > 0){
                 lo = (possibilities.size() /2) + 1;
             } else{
                 return true;
             }
         }
+        return false;
     }
 
     public static void main(String[] args){
