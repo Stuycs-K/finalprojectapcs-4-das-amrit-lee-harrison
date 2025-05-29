@@ -32,5 +32,6 @@ public class tilePool {
         int random = (int) (Math.random() * tilePool.size());
         removedTiles.add(tilePool.remove(random));
       }
+      return removedTiles;
     }
 }

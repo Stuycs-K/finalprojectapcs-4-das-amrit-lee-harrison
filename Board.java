@@ -2,9 +2,9 @@ import java.util.*;
 import java.io.*;
 
 public class Board{
-    private static char[][] board;
-    private static int[][] lettermultipliers;
-    private static int[][] wordmultipliers;
+    public  char[][] board;
+    public  int[][] lettermultipliers;
+    public  int[][] wordmultipliers;
     
     public Board(){
         board = new char[15][15];
@@ -12,7 +12,7 @@ public class Board{
         wordmultipliers = new int[15][15];
     }
 
-    public static void lettering(){
+    public void lettering(){
         lettermultipliers[0][3] = 2;
         lettermultipliers[0][11] = 2;
         lettermultipliers[1][5] = 3;
@@ -51,7 +51,7 @@ public class Board{
         lettermultipliers[14][11] = 2;
     }
 
-    public static void wording(){
+    public  void wording(){
         wordmultipliers[0][0] = 3;
         wordmultipliers[0][7] = 3;
         wordmultipliers[0][14] = 3;
@@ -71,7 +71,7 @@ public class Board{
         wordmultipliers[7][14] = 3;
 
     }
-    public static void main(String[] args){
+    public void main(String[] args){
         lettering();
         wording();
     }

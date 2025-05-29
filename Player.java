@@ -10,11 +10,11 @@ public class Player{
     name = giveName;
   }
 
-  public addScore(int amount) {
+  public void addScore(int amount) {
     score += amount;
   }
 
-  public drawTiles(int amount) {
+  public void drawTiles(int amount) {
 
   }
 }

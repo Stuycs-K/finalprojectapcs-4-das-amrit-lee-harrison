@@ -33,3 +33,5 @@ In- Class:
 10mins- worked with Harrison on ensuring the git branches were all working properly and starting with the thing known as processing
 
 ## 2025-05-29- Brief Description
+
+40mins- working on transferring the Board to processing. Invovlved reviewing some basics of this interface.
