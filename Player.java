@@ -6,9 +6,10 @@ public class Player{
   private int score;
   private ArrayList<Tile> hand;
 
-  public Player(String giveName, ArrayList<tile> tile) {
+  public Player(String giveName, ArrayList<Tile> giveHand) {
     name = giveName;
     score = 0;
+    hand = giveHand;
   }
 
   public void addScore(int amount) {
