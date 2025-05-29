@@ -6,17 +6,30 @@ public class Player{
   private int score;
   private ArrayList<Tile> hand;
 
-  public Player(String giveName) {
+  public Player(String giveName, ArrayList<tile> tile) {
     name = giveName;
+    score = 0;
   }
 
-  public addScore(int amount) {
+  public void addScore(int amount) {
     score += amount;
   }
 
-  public drawTiles(ArrayList<Tile> tilesToBeDrawn) {
+  public int getScore() {
+    return score;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public ArrayList<Tile> getHand() {
+    return hand;
+  }
+
+  public void drawTiles(ArrayList<Tile> tilesToBeDrawn) {
     for (int i =0; i< tilesToBeDrawn.size(); i++) {
-      hand.add(tilesToBeDrawn.get(i);
+      hand.add(tilesToBeDrawn.get(i));
     }
   }
 }
