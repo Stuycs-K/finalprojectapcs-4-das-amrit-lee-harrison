@@ -14,3 +14,11 @@ Spent about 25 minutes learning branching and making the tilePool constructor wh
 ### 2024-05-23 - Brief description
 **Class**
 Spent 30 minutes discussing game design choices and updating my UML.
+
+**2024-05-28**
+**Class**
+Spend 35 mins working on a way to randomly distribute tiles from the tilePool to players and adding player classes
+
+**2024-05-28**
+**Class**
+Spent 20 mins fixing my method ofdistributing tiles from tilePOol to players and testing
