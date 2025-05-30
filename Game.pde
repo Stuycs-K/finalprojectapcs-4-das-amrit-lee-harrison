@@ -3,6 +3,8 @@ int[][] lettermultipliers = grid.lettermultipliers;
 int[][] wordmultipliers = grid.wordmultipliers;
 
 void setup(){
+  grid.lettering();
+  grid.wording();
   size(600,600);
   int size = 40;
   for(int x = 0; x < 15; x++){
