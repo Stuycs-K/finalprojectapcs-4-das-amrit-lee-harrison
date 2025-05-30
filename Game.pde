@@ -1,5 +1,8 @@
 Board grid = new Board();
-
+Player player1;
+Player player2;
+tilePool tilePool;
+Dictionary dictionary;
 
 void setup(){
   grid.lettering();
@@ -24,6 +27,9 @@ void setup(){
   }
 }
 
-
+void newTurn(Player player) {
+  int tilesNeeded = 7 - player.getHand().size();
+  player.drawTiles(tilePool.removeTiles(tilesNeeded));
+}
       
   
