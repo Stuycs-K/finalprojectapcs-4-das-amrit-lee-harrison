@@ -56,13 +56,13 @@ public class Board{
         wordmultipliers[0][0] = 3;
         wordmultipliers[0][7] = 3;
         wordmultipliers[0][14] = 3;
-        for(int x = 1; x < 4; x++){
+        for(int x = 1; x <= 4; x++){
             wordmultipliers[x][x] = 2;
-            wordmultipliers[14 - x][14 - x] = 2;
+            wordmultipliers[14 - x][x] = 2;
         }
         for(int x = 10; x < 14; x++){
             wordmultipliers[x][x] = 2;
-            wordmultipliers[14 - x][14 - x] = 2;
+            wordmultipliers[14 - x][x] = 2;
         }
         wordmultipliers[14][0] = 3;
         wordmultipliers[14][7] = 3;
