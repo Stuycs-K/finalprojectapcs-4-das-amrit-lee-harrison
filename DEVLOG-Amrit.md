@@ -35,3 +35,8 @@ In- Class:
 ## 2025-05-29- Brief Description
 
 40mins- working on transferring the Board to processing. Invovlved reviewing some basics of this interface.
+25mins- working on the board to processing. successful now.
+
+## 2025-05-30- Brief Description
+
+10mins- working on debugging the board so it matches the actual scrabble board
