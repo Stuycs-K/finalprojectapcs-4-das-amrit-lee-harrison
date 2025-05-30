@@ -7,7 +7,7 @@ Dictionary dictionary;
 void setup(){
   grid.lettering();
   grid.wording();
-  size(450,750);
+  size(450, 750);
   int size = 30;
   for(int x = 0; x < 15; x++){
     for(int y =0; y < 15; y++){
@@ -25,6 +25,13 @@ void setup(){
       square(x * 30, y * 30, size);
     }
   }
+  
+ noFill();
+  rect(0, 450, 100, 120);
+  fill(0,191,255);
+  rect(10, 465, 10, 10);
+  text("Double Letter", 10, 465);
+  
 }
 
 void newTurn(Player player) {
