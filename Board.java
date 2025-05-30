@@ -42,7 +42,7 @@ public class Board{
         lettermultipliers[9][13] = 3;
         lettermultipliers[11][0] = 2;
         lettermultipliers[11][6] =2;
-        lettermultipliers[11][15] = 2;
+        lettermultipliers[11][14] = 2;
         lettermultipliers[12][6] = 2;
         lettermultipliers[12][8] = 2;
         lettermultipliers[13][5] = 3;
