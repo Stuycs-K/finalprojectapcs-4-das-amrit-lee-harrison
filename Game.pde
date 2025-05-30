@@ -1,6 +1,11 @@
 Board grid = new Board();
 int[][] lettermultipliers = grid.lettermultipliers;
 int[][] wordmultipliers = grid.wordmultipliers;
+Player player1;
+Player player2;
+tilePool tilePool;
+Dictionary dictionary;
+
 
 void setup(){
   grid.lettering();
@@ -27,6 +32,7 @@ void setup(){
       }
     }
   }
+
 }
 
 
