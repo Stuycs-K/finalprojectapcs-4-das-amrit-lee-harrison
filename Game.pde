@@ -4,8 +4,8 @@ Board grid = new Board();
 void setup(){
   grid.lettering();
   grid.wording();
-  size(600,600);
-  int size = 40;
+  size(450,750);
+  int size = 30;
   for(int x = 0; x < 15; x++){
     for(int y =0; y < 15; y++){
       if(grid.lettermultipliers[x][y] == 2){
@@ -19,7 +19,7 @@ void setup(){
       } else{
         fill(255);
       }
-      square(x * 40, y * 40, size);
+      square(x * 30, y * 30, size);
     }
   }
 }
