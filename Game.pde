@@ -7,8 +7,8 @@ Dictionary dictionary;
 void setup(){
   grid.lettering();
   grid.wording();
-  size(450, 750);
-  int size = 30;
+  size(600, 900);
+  int size = 40;
   for(int x = 0; x < 15; x++){
     for(int y =0; y < 15; y++){
       if(grid.lettermultipliers[x][y] == 2){
@@ -22,16 +22,18 @@ void setup(){
       } else{
         fill(255);
       }
-      square(x * 30, y * 30, size);
+      square(x * 40, y * 40, size);
     }
   }
   
  noFill();
-  rect(0, 450, 100, 120);
+  rect(0, 600, 100, 120);
   fill(0,191,255);
-  rect(10, 465, 10, 10);
-  text("Double Letter", 10, 465);
-  
+  rect(10, 610, 10, 10);
+  text("Double Letter", 25, 475);
+  fill(0,128,255);
+  rect(10, 485, 10, 10);
+  text("Trippble Letter", 25, 475);
 }
 
 void newTurn(Player player) {
