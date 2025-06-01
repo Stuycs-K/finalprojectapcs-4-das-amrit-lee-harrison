@@ -16,6 +16,10 @@ import java.io.*;
             ascii++;
         }
     }
+    
+    public int tilesLeft() {
+      return tilePool.size();
+    }
 
     public String toString() {
         char[] letters = new char[tilePool.size()];

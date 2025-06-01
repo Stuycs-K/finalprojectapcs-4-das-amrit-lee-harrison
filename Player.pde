@@ -4,7 +4,7 @@ import java.io.*;
  class Player{
   private String name;
   private int score;
-  private ArrayList<Tile> hand;
+  private ArrayList<Tile> hand = new ArrayList<Tile>(0);
 
   public Player(String giveName) {
     name = giveName;
@@ -27,10 +27,9 @@ import java.io.*;
     return hand;
   }
 
-  public ArrayList<Tile> drawTiles(ArrayList<Tile> tilesToBeDrawn) {
+  public void drawTiles(ArrayList<Tile> tilesToBeDrawn) {
     for (int i =0; i< tilesToBeDrawn.size(); i++) {
       hand.add(tilesToBeDrawn.get(i));
     }
-    return tilesToBeDrawn;
   }
 }

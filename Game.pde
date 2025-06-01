@@ -55,12 +55,17 @@ void setup(){
   //initialize players
   player1 = new Player("Player");
   player2 = new Player("Player 2");
+    tilePool = new tilePool();
+  restockHand(player1);
+   restockHand(player2);
 }
 
 void restockHand(Player player) {
   int tilesNeeded = 7 - player.getHand().size();
+  if (tilesNeeded >0 && tilePool.tilesLeft() > 0) {
   ArrayList<Tile> tilesGiven = tilePool.removeTiles(tilesNeeded);
   player.drawTiles(tilesGiven);
+}
 }
 
 boolean gameOver() {
@@ -70,8 +75,11 @@ boolean gameOver() {
 void draw() {
 }
 
-void mouseDragged() {
-  System.out.println("hello");
+void mousePressed() {
+  System.out.println("" + player1.getHand().size());
+  for (int i =0; i < 7; i++) {
+    System.out.println(player1.getHand().get(i).getLetter());
+  }
 }
   
 
