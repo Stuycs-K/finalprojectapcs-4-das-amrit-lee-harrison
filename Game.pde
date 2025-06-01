@@ -80,11 +80,17 @@ boolean gameOver() {
 }
 
 void draw() {
-  
+  drawRack();
 }
 
 void drawRack() {
-  
+  int increment = 20;
+  textSize(30);
+  text("Player 1", 10, 760);
+  for (Tile t: player1.getHand()) {
+    t.display(100 + increment, 730);
+    increment+=50;
+}
 }
 
 void mousePressed() {
