@@ -1,3 +1,5 @@
+import java.util.*;
+
 Board grid = new Board();
 Player player1;
 Player player2;
@@ -49,20 +51,27 @@ void setup(){
    line(490, 760, 600, 760);
   text("Player 1 Score", 525, 620);
   text("Double Letter", 525, 620);
+  
+  //initialize players
+  player1 = new Player("Player");
+  player2 = new Player("Player 2");
 }
 
 void restockHand(Player player) {
   int tilesNeeded = 7 - player.getHand().size();
-  player.drawTiles(tilePool.removeTiles(tilesNeeded));
+  ArrayList<Tile> tilesGiven = tilePool.removeTiles(tilesNeeded);
+  player.drawTiles(tilesGiven);
 }
 
 boolean gameOver() {
   return (player1.getScore() < 100 && player2.getScore() < 100);
 }
 
-void startTurn() {
+void draw() {
+}
 
-  
+void mouseDragged() {
+  System.out.println("hello");
 }
   
 

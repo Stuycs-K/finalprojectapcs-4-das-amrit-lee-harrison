@@ -31,8 +31,15 @@
     }
     
     public void display() {
-      fill(0,191,255);
-      rect(400, 800, 15, 15);
+      rect(x, y, 15, 15);
+      text(letter, x+20, y+20);
+    }
+    
+    public float getX() {
+      return x;
+    }
+    public float getY() {
+      return y;
     }
     
 
