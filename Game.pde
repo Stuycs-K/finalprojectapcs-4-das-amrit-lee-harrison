@@ -81,6 +81,14 @@ boolean gameOver() {
 
 void draw() {
   drawRack();
+  for (int i =0; i < 15; i++) {
+    for (int j = 0; j < 15; j++) {
+      Tile tile = grid.getBoard(i, j);
+      if (tile != null) {
+        tile.display(30, 30);
+      }
+    }
+  }
 }
 
 void drawRack() {
@@ -94,10 +102,8 @@ void drawRack() {
 }
 
 void mousePressed() {
-  System.out.println("" + player1.getHand().size());
-  for (int i =0; i < 7; i++) {
-    System.out.println(player1.getHand().get(i).getLetter());
-  }
+  
+  
 }
   
 

@@ -2,6 +2,8 @@
     private char letter;
     private int letterValue;
     float x,y;
+    boolean inRack = true;
+    
 
     public Tile(char assignLetter, float x, float y) {
       letter = assignLetter;
