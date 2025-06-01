@@ -36,8 +36,9 @@
       fill(196, 164, 132);
       rect(x, y, 40, 40);
       fill(0,0,0);
-      textSize(40);
-      text(letter, x+10, y+30);
+      textSize(30);
+      textAlign(CENTER, CENTER);
+      text(letter, x+20, y+20);
     }
     
     void setLocation(float x, float y) {

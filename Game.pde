@@ -85,7 +85,7 @@ void draw() {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
       if (tile != null) {
-        tile.display(30, 30);
+        tile.display(i*40, j*40);
       }
     }
   }
