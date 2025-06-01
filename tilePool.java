@@ -10,7 +10,7 @@ public class tilePool {
         int ascii = 65;
         for (int i = 0; i < 26; i++) {
             for (int frequency = 0; frequency < tileFrequency[i]; frequency++) {
-                Tile tile = new Tile((char) ascii);
+                Tile tile = new Tile((char) ascii, -1, -1);
                 tilePool.add(tile);
             }
             ascii++;

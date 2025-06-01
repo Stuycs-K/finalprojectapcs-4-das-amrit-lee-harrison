@@ -1,8 +1,9 @@
 public class Tile{
     private char letter;
     private int letterValue;
+    float x,y;
 
-    public Tile(char assignLetter) {
+    public Tile(char assignLetter, float x, float y) {
       letter = assignLetter;
       if (letter == 'A' || letter == 'E' || letter == 'I'|| letter == 'O'|| letter == 'U'|| letter == 'L'|| letter == 'N'|| letter == 'S'|| letter == 'T'|| letter == 'R') {
         letterValue = 1;
@@ -25,7 +26,13 @@ public class Tile{
       else if (letter == 'Q' || letter == 'Z') {
         letterValue = 10;
       }
+      this.x = x;
+      this.y = y;
     }
+    
+    display() {
+    }
+    
 
     public char getLetter() {
       return letter;
