@@ -5,6 +5,7 @@ Player player1;
 Player player2;
 tilePool tilePool;
 Dictionary dictionary;
+Tile selectedTile;
 
 //Size of board Vars
 int tileSize = 40;
@@ -102,8 +103,17 @@ void drawRack() {
 }
 
 void mousePressed() {
-  
-  
+  int xBoard = mouseX/ 40;
+  int yBoard = mouseY/40;
+  for (Tile tile: player1.getHand()) {
+    if (tile.mouseOnTile(mouseX, mouseY) ) {
+    }
+    selectedTile = tile;
+    return;
+  }
+  else if (grid.getBoard(xBoard, yBoard) == null) {
+   grid.setTile(xBoard, yBoard, selectedTile);
+}
 }
   
 

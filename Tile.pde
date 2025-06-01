@@ -3,6 +3,7 @@
     private int letterValue;
     float x,y;
     boolean inRack = true;
+    boolean selectedTile = false;
     
 
     public Tile(char assignLetter, float x, float y) {

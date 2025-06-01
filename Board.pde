@@ -8,12 +8,12 @@ import java.io.*;
     
     public Board(){
         board = new Tile[15][15];
-         for (int i =0; i < 15; i++) {
-    for (int j = 0; j < 15; j++) {
-      Tile tile = new Tile('A', 30, 30);
-      board[i][j] = tile;
-    }
-         }
+         //for (int i =0; i < 15; i++) {
+   // for (int j = 0; j < 15; j++) {
+     // Tile tile = new Tile('A', 30, 30);
+    //  board[i][j] = tile;
+  //  }
+       //  }
         lettermultipliers = new int[15][15];
         wordmultipliers = new int[15][15];
         
@@ -88,6 +88,10 @@ import java.io.*;
     
     public Tile getBoard(int x, int y) {
       return board[x][y];
+    }
+    
+    public void setTile(int x, int y, Tile tile) {
+      board[x][y] = tile;
     }
     public  void main(String[] args){
         lettering();
