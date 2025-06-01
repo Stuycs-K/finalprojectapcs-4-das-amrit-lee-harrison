@@ -4,11 +4,13 @@ Player player2;
 tilePool tilePool;
 Dictionary dictionary;
 
+//Size of board Vars
+int tileSize = 40;
+
 void setup(){
+    size(600, 800);
   grid.lettering();
   grid.wording();
-  size(600, 800);
-  int size = 40;
   for(int x = 0; x < 15; x++){
     for(int y =0; y < 15; y++){
       if(grid.lettermultipliers[x][y] == 2){
@@ -22,24 +24,31 @@ void setup(){
       } else{
         fill(255);
       }
-      square(x * 40, y *40, size);
+      square(x * tileSize, y *tileSize, tileSize);
     }
   }
   
  noFill();
-  rect(500, 600, 100, 100);
+ //Multiplier key
+  rect(490, 600, 120, 120);
   fill(0,191,255);
-  rect(510, 610, 10, 10);
+  rect(500, 610, 15, 15);
   text("Double Letter", 525, 620);
   fill(0,128,255);
-  rect(510, 630, 10, 10);
-  text("Triple Letter", 525, 640);
+  rect(500, 635, 15, 15);
+  text("Triple Letter", 525, 645);
   fill(255,120,0);
-  rect(510, 650, 10, 10);
-  text("Double Letter", 525, 660);
+  rect(500, 660, 15, 15);
+  text("Double Letter", 525, 670);
   fill(255,0,0);
-  rect(510, 670, 10, 10);
-  text("Triple Letter", 525, 680);
+  rect(500, 690, 15, 15);
+  text("Triple Letter", 525, 700);
+  //Score's of players
+   noFill();
+   rect(490, 720, 120, 120);
+   line(490, 760, 600, 760);
+  text("Player 1 Score", 525, 620);
+  text("Double Letter", 525, 620);
 }
 
 void newTurn(Player player) {
