@@ -80,6 +80,11 @@ boolean gameOver() {
 }
 
 void draw() {
+  
+}
+
+void drawRack() {
+  
 }
 
 void mousePressed() {

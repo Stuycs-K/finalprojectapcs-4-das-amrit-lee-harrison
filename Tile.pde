@@ -31,8 +31,15 @@
     }
     
     public void display() {
+      fill(196, 164, 132);
       rect(x, y, 15, 15);
+      fill(0,0,0);
       text(letter, x+20, y+20);
+    }
+    
+    void setLocation(float x, float y) {
+      this.x = x;
+      this.y = y;
     }
     
     public float getX() {
