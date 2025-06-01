@@ -10,8 +10,22 @@ Dictionary dictionary;
 int tileSize = 40;
 
 void setup(){
-    size(600, 900);
-  grid.lettering();
+  size(600, 800);
+    initializeBoard();
+    initializePlayers();
+}
+
+void initializePlayers() {
+    player1 = new Player("Player");
+  player2 = new Player("Player 2");
+  dictionary = new Dictionary();
+    tilePool = new tilePool();
+  restockHand(player1);
+   restockHand(player2);
+}
+
+void initializeBoard() {
+   grid.lettering();
   grid.wording();
   for(int x = 0; x < 15; x++){
     for(int y =0; y < 15; y++){
@@ -51,13 +65,6 @@ void setup(){
    line(490, 760, 600, 760);
   text("Player 1 Score", 525, 620);
   text("Double Letter", 525, 620);
-  
-  //initialize players
-  player1 = new Player("Player");
-  player2 = new Player("Player 2");
-    tilePool = new tilePool();
-  restockHand(player1);
-   restockHand(player2);
 }
 
 void restockHand(Player player) {
