@@ -1,10 +1,10 @@
 import java.util.*;
 import java.io.*;
 
-public class Board{
-    public  static char[][] board;
-    public  static int[][] lettermultipliers;
-    public  static int[][] wordmultipliers;
+ class Board{
+    public  char[][] board;
+    public  int[][] lettermultipliers;
+    public  int[][] wordmultipliers;
     
     public Board(){
         board = new char[15][15];
@@ -13,7 +13,7 @@ public class Board{
         
     }
 
-    public  static void lettering(){
+    public  void lettering(){
         lettermultipliers[0][3] = 2;
         lettermultipliers[0][11] = 2;
         lettermultipliers[1][5] = 3;
@@ -42,7 +42,7 @@ public class Board{
         lettermultipliers[9][9] = 3;
         lettermultipliers[9][13] = 3;
         lettermultipliers[11][0] = 2;
-        lettermultipliers[11][6] =2;
+        lettermultipliers[11][7] =2;
         lettermultipliers[11][14] = 2;
         lettermultipliers[12][6] = 2;
         lettermultipliers[12][8] = 2;
@@ -52,7 +52,7 @@ public class Board{
         lettermultipliers[14][11] = 2;
     }
 
-    public  static void wording(){
+    public  void wording(){
         wordmultipliers[0][0] = 3;
         wordmultipliers[0][7] = 3;
         wordmultipliers[0][14] = 3;
@@ -73,13 +73,13 @@ public class Board{
 
     }
     
-    public static int getlet(int x, int y){
+    public  int getlet(int x, int y){
       return lettermultipliers[x][y];
     }
-    public static int getwor(int x, int y){
+    public  int getwor(int x, int y){
       return wordmultipliers[x][y];
     }
-    public static void main(String[] args){
+    public  void main(String[] args){
         lettering();
         wording();
     }

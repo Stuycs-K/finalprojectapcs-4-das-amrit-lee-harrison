@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class tilePool {
+ class tilePool {
     private ArrayList<Tile> tilePool = new ArrayList<>();
 
     public tilePool() {

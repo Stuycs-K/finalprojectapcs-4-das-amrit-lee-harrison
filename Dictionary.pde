@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Dictionary{
+ class Dictionary{
     private ArrayList<String> possibilities = new ArrayList<String>();
 
     public void reader(String name){
@@ -33,7 +33,4 @@ public class Dictionary{
         return false;
     }
 
-    public static void main(String[] args){
-        
-    }
 }

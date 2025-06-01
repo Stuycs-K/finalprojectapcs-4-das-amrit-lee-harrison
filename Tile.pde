@@ -1,4 +1,4 @@
-public class Tile{
+ class Tile{
     private char letter;
     private int letterValue;
     float x,y;
@@ -30,7 +30,9 @@ public class Tile{
       this.y = y;
     }
     
-    display() {
+    public void display() {
+      fill(0,191,255);
+      rect(400, 800, 15, 15);
     }
     
 

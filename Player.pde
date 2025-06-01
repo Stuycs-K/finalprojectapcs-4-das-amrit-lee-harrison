@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Player{
+ class Player{
   private String name;
   private int score;
   private ArrayList<Tile> hand;

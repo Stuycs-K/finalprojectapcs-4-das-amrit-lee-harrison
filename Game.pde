@@ -8,7 +8,7 @@ Dictionary dictionary;
 int tileSize = 40;
 
 void setup(){
-    size(600, 800);
+    size(600, 900);
   grid.lettering();
   grid.wording();
   for(int x = 0; x < 15; x++){
@@ -51,9 +51,19 @@ void setup(){
   text("Double Letter", 525, 620);
 }
 
-void newTurn(Player player) {
+void restockHand(Player player) {
   int tilesNeeded = 7 - player.getHand().size();
   player.drawTiles(tilePool.removeTiles(tilesNeeded));
 }
-      
+
+boolean gameOver() {
+  return (player1.getScore() < 100 && player2.getScore() < 100);
+}
+
+void startTurn() {
+
+  
+}
+  
+
   
