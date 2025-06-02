@@ -104,6 +104,9 @@ void draw() {
   else{
     drawRack(player2);
   }
+  background(240);
+  initializeBoard();
+  drawRack();
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -124,8 +127,15 @@ void drawRack(Player player) {
     t.display();
     increment+=50;
   }
+  }
   
 
+void drawRack() {
+  textSize(30);
+  text("Player 1", 10, 760);
+  for (Tile t: player1.getHand()) {
+    t.display();
+}
 }
 
 void mousePressed() {
@@ -145,6 +155,11 @@ void mousePressed() {
   if (grid.getBoard(xBoard, yBoard) == null) {
    grid.setTile(xBoard, yBoard, selectedTile);
    selectedTile.setLocation(xBoard * 40, yBoard * 40);
+   int tileIndex = player1.tileIndex(selectedTile);
+   System.out.println(tileIndex);
+    if (tileIndex >= 0) {
+      player1.getHand().remove(tileIndex);
+    }
    selectedTile = null;
    System.out.println("tile placed");
 }
