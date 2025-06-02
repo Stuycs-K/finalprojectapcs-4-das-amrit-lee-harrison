@@ -16,6 +16,7 @@ void setup(){
   size(600, 800);
   initializeBoard();
   initializePlayers();
+    initializePlayers();
 }
 
 
@@ -98,12 +99,18 @@ boolean gameOver() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
+<<<<<<< HEAD
   if(flag){
     drawRack(player1);
   }
   else{
     drawRack(player2);
   }
+=======
+  background(240);
+  initializeBoard();
+  drawRack();
+>>>>>>> 03effa6402b2eadd62d3aabe2fda19fecde4de8d
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -124,8 +131,13 @@ void drawRack(Player player) {
     t.display();
     increment+=50;
   }
-  
-
+}
+void drawRack() {
+  textSize(30);
+  text("Player 1", 10, 760);
+  for (Tile t: player1.getHand()) {
+    t.display();
+}
 }
 
 void mousePressed() {
@@ -145,6 +157,11 @@ void mousePressed() {
   if (grid.getBoard(xBoard, yBoard) == null) {
    grid.setTile(xBoard, yBoard, selectedTile);
    selectedTile.setLocation(xBoard * 40, yBoard * 40);
+   int tileIndex = player1.tileIndex(selectedTile);
+   System.out.println(tileIndex);
+    if (tileIndex >= 0) {
+      player1.getHand().remove(tileIndex);
+    }
    selectedTile = null;
    System.out.println("tile placed");
 }
