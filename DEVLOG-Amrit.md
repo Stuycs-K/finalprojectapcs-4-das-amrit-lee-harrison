@@ -40,3 +40,7 @@ In- Class:
 ## 2025-05-30- Brief Description
 
 10mins- working on debugging the board so it matches the actual scrabble board
+
+## 2025-06-01- Brief Description
+
+2.5hrs(home)- working on ensuring the board was working. Harrison had already ensured that the tiles dropping and dragging was functional. My role was to compare tile patterns to the dictionary as well as refreshing the tilePool per turn. This took a lot of functions and trial/error runs as I had to consider that words can occur both horizontally and vertically, hence, we needed to check both directions to see if a word was made possible. The clearing/resetting of the tilePool was straightforward and just involved adding a line of code at the end.
