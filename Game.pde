@@ -16,6 +16,8 @@ void setup(){
   size(600, 800);
   initializeBoard();
   initializePlayers();
+
+    initializePlayers();
 }
 
 
@@ -60,22 +62,23 @@ void initializeBoard() {
   rect(490, 600, 120, 120);
   fill(0,191,255);
   rect(500, 610, 15, 15);
-  text("Double Letter", 525, 620);
+  textSize(15);
+  text("Double Letter", 560, 620);
   fill(0,128,255);
   rect(500, 635, 15, 15);
-  text("Triple Letter", 525, 645);
+  text("Triple Letter", 560, 645);
   fill(255,120,0);
   rect(500, 660, 15, 15);
-  text("Double Word", 525, 670);
+  text("Double Word", 560, 670);
   fill(255,0,0);
   rect(500, 690, 15, 15);
-  text("Triple Word", 525, 700);
+  text("Triple Word", 560, 700);
   //Score's of players
    noFill();
    rect(490, 720, 120, 120);
    line(490, 760, 600, 760);
-  text("Player 1 Score", 515, 730);
-  text("Player 2 Score", 515,770);
+  text("Player 1 Score", 550, 730);
+  text("Player 2 Score", 550,770);
 }
 
 
@@ -121,7 +124,7 @@ void draw() {
 
 void drawRack(Player player) {
   int increment = 20;
-  textSize(20);
+  textSize(10);
   text(player.getName(), 30, 650);
   for (Tile t: player1.getHand()) {
     t.display();
@@ -133,6 +136,10 @@ void drawRack(Player player) {
 void drawRack() {
   textSize(30);
   text("Player 1", 10, 760);
+}
+void drawRack() {
+  textSize(20);
+  text("Player 1", 30, 620);
   for (Tile t: player1.getHand()) {
     t.display();
 }
@@ -152,16 +159,17 @@ void mousePressed() {
   }
   }
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
-  if (grid.getBoard(xBoard, yBoard) == null) {
-   grid.setTile(xBoard, yBoard, selectedTile);
-   selectedTile.setLocation(xBoard * 40, yBoard * 40);
-   int tileIndex = player1.tileIndex(selectedTile);
-   System.out.println(tileIndex);
-    if (tileIndex >= 0) {
+    if (grid.getBoard(xBoard, yBoard) == null) {
+     grid.setTile(xBoard, yBoard, selectedTile);
+     grid.setStatus(xBoard, yBoard, true);
+     selectedTile.setLocation(xBoard * 40, yBoard * 40);
+     int tileIndex = player1.tileIndex(selectedTile);
+     System.out.println(tileIndex);
+     if (tileIndex >= 0) {
       player1.getHand().remove(tileIndex);
     }
-   selectedTile = null;
-   System.out.println("tile placed");
+     selectedTile = null;
+     System.out.println("tile placed");
 }
 }
 }
