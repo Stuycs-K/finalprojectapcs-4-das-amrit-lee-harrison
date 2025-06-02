@@ -8,6 +8,8 @@ tilePool tilePool;
 Dictionary dictionary = new Dictionary();
 boolean flag = true;
 Tile selectedTile;
+ArrayList<Tile> placedTiles = new ArrayList<Tile>();
+boolean firstLetterSelected = false;
 
 //Size of board Vars
 int tileSize = 40;
@@ -143,6 +145,16 @@ void drawRack() {
 void mousePressed() {
   int xBoard = mouseX/ 40;
   int yBoard = mouseY/40;
+  if (mouseButton == CENTER && firstLetterSelected == false  && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
+    placedTiles.add(selectedTile);
+    firstLetterSelected = true;
+    System.out.println("Selected");
+  }
+  if (mouseButton == RIGHT) {
+     firstLetterSelected = false;
+    //confirms word
+    return;
+  }
   if (mouseY > 600 && selectedTile == null) {
      System.out.println( mouseX + ", " + mouseY);
   for (Tile tile: player1.getHand()) {
@@ -156,6 +168,7 @@ void mousePressed() {
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
     if (grid.getBoard(xBoard, yBoard) == null) {
      grid.setTile(xBoard, yBoard, selectedTile);
+     placedTiles.add(selectedTile);
      grid.setStatus(xBoard, yBoard, true);
      selectedTile.setLocation(xBoard * 40, yBoard * 40);
      int tileIndex = player1.tileIndex(selectedTile);
