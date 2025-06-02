@@ -76,9 +76,8 @@ void initializeBoard() {
   //Score's of players
    noFill();
    rect(490, 720, 120, 120);
-   line(490, 760, 600, 760);
+   //line(490, 760, 600, 760);
   text("Player 1 Score", 550, 730);
-  text("Player 2 Score", 550,770);
 }
 
 
@@ -133,10 +132,7 @@ void drawRack(Player player) {
   }
   
 
-void drawRack() {
-  textSize(30);
-  text("Player 1", 10, 760);
-}
+
 void drawRack() {
   textSize(20);
   text("Player 1", 30, 620);
