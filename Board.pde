@@ -82,7 +82,6 @@ import java.io.*;
         wordmultipliers[14][7] = 3;
         wordmultipliers[14][14] = 3;
         wordmultipliers[7][0] = 3;
-        wordmultipliers[7][7] = 3;
         wordmultipliers[7][14] = 3;
 
     }
