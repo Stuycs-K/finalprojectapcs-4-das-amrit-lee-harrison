@@ -37,7 +37,7 @@
       return (x >= this.x && x <= this.x + 40 && y >= this.y && y <= this.y + 40);
     }
     
-    public void display(float x, float y) {
+    public void display() {
       fill(196, 164, 132);
       rect(x, y, 40, 40);
       fill(0,0,0);
