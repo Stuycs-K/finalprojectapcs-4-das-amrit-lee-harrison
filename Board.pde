@@ -100,4 +100,7 @@ import java.io.*;
         lettering();
         wording();
     }
+    
+    public boolean wordle(){
+      
 }
