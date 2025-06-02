@@ -2,8 +2,12 @@ import java.util.*;
 import java.io.*;
 
  class Dictionary{
-    private ArrayList<String> possibilities = new ArrayList<String>();
-
+    private ArrayList<String> possibilities;
+    
+    public Dictionary(){
+      possibilities = new ArrayList<String>();
+    }
+    
     public void reader(String name){
         try{
             File file = new File(name);
