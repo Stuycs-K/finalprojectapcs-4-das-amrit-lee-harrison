@@ -27,6 +27,14 @@ import java.io.*;
     return hand;
   }
 
+public void removeTile(int index) {
+  hand.remove(index);
+}
+
+public int tileIndex(Tile tile) {
+  return hand.indexOf(tile);
+}
+
   public void drawTiles(ArrayList<Tile> tilesToBeDrawn) {
     for (int i =0; i< tilesToBeDrawn.size(); i++) {
       hand.add(tilesToBeDrawn.get(i));
