@@ -140,7 +140,7 @@ import java.io.*;
       //}
       
       String word = "";
-      for(int i = referen; i< 15 && status[x][15-i];i++){
+      for(int i = referen; i< 14 && status[x][14-i];i++){
         if(board[x][i] == null){
           return false;
         }
