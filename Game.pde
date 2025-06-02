@@ -16,6 +16,7 @@ int tileSize = 40;
 //SETUP
 void setup(){
   size(600, 800);
+  dictionary.reader("Dict.txt");
   initializeBoard();
   initializePlayers();
 }
@@ -143,6 +144,10 @@ void drawRack() {
 }
 
 void mousePressed() {
+   String input = "";
+        for (int i =0; i <placedTiles.size(); i++) {
+          input += placedTiles.get(i).getLetter();
+        }
   int xBoard = mouseX/ 40;
   int yBoard = mouseY/40;
   if (mouseButton == CENTER && firstLetterSelected == false  && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
@@ -150,15 +155,16 @@ void mousePressed() {
     firstLetterSelected = true;
     System.out.println("Selected");
   }
-  if (mouseButton == RIGHT) {
+
+  if (mouseButton == RIGHT && dictionary.result(input)) {
      firstLetterSelected = false;
+     System.out.println("word good");
     //confirms word
     return;
   }
   if (mouseY > 600 && selectedTile == null) {
      System.out.println( mouseX + ", " + mouseY);
   for (Tile tile: player1.getHand()) {
-    System.out.println(tile.getX() + "," + tile.getY());
     if (tile.mouseOnTile(mouseX, mouseY) ) {
     selectedTile = tile;
     return;

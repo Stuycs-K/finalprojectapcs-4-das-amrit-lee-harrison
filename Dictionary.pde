@@ -10,7 +10,7 @@ import java.io.*;
     
     public void reader(String name){
         try{
-            File file = new File(name);
+            File file = new File(dataPath(name));
             Scanner sc = new Scanner(file);
             while(sc.hasNextLine()){
                 possibilities.add(sc.nextLine());
@@ -22,7 +22,6 @@ import java.io.*;
     }
 
     public boolean result(String input){
-      
         int lo = 0;
         int end = possibilities.size() - 1;
         while(lo <= end){
