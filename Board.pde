@@ -101,6 +101,55 @@ import java.io.*;
         wording();
     }
     
-    public boolean wordle(){
+    public boolean wordlehor(int x, int y){
+      int referen = x;
+      while(referen > 0 && status[15 - referen][y]){
+        referen--;
+      }
+      
+      if(!status[15 - referen][y]){
+        referen++;
+      }
+      
+      String word = "";
+      for(int i = referen; i < 15 && status[15 - i][y];i++){
+        word += board[i][y].getLetter();
+      }
+      if(word.length() <= 1 || dictionary.result(word)){
+        return true;
+      }
+      
+     return false;
+    }
+    
+    public boolean wordlever(int x, int y){
+      int referen = y;
+      while(referen > 0 && status[x][15 - referen]){
+        referen--;
+      }
+      
+      if(!status[x][15 - referen]){
+        referen++;
+      }
+      
+      String word = "";
+      for(int i = referen; i< 15 && status[x][15-i];i++){
+        word += board[x][i].getLetter();
+      }
+      if(word.length() <= 1 || dictionary.result(word)){
+        return true;
+      }
+      
+     return false;
+    }
+    
+    public boolean wordle(int x, int y){
+      if(wordlehor(x,y) && wordlever(x,y)){
+        return true;
+      }
+      return false;
+    }
+      
+    
       
 }
