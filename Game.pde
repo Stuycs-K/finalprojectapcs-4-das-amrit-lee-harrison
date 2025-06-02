@@ -16,6 +16,7 @@ void setup(){
   size(600, 800);
   initializeBoard();
   initializePlayers();
+  dictionary.reader("Dict.txt");
 }
 
 
@@ -100,9 +101,7 @@ boolean gameOver() {
 void draw() {
   background(240);
   initializeBoard();
-  if(flag){
-    drawRack(player1);
-  }
+  drawRack(player1);
   //else{
   //  drawRack(player2);
   //}
@@ -143,9 +142,9 @@ void mousePressed() {
   int xBoard = mouseX/ 40;
   int yBoard = mouseY/40;
   if (mouseY > 600 && selectedTile == null) {
-     System.out.println( mouseX + ", " + mouseY);
-  for (Tile tile: player1.getHand()) {
-    System.out.println(tile.getX() + "," + tile.getY());
+     //System.out.println( mouseX + ", " + mouseY);
+    for (Tile tile: player1.getHand()) {
+    //System.out.println(tile.getX() + "," + tile.getY());
     if (tile.mouseOnTile(mouseX, mouseY) ) {
     selectedTile = tile;
     return;
@@ -154,26 +153,28 @@ void mousePressed() {
   }
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
     if (grid.getBoard(xBoard, yBoard) == null) {
-     grid.setTile(xBoard, yBoard, selectedTile);
-     grid.setStatus(xBoard, yBoard, true);
-     selectedTile.setLocation(xBoard * 40, yBoard * 40);
-     int tileIndex = player1.tileIndex(selectedTile);
+       grid.setTile(xBoard, yBoard, selectedTile);
+       grid.setStatus(xBoard, yBoard, true);
+       selectedTile.setLocation(xBoard * 40, yBoard * 40);
+       int tileIndex = player1.tileIndex(selectedTile);
      //System.out.println(tileIndex);
-     if (tileIndex >= 0) {
-      player1.getHand().remove(tileIndex);
+       if (tileIndex >= 0) {
+          player1.getHand().remove(tileIndex);
+        }
     }
     if(grid.wordle(xBoard,yBoard)){
       int points = grid.additions(xBoard,yBoard);
-      System.out.println(points);
+      //System.out.println(points);
       player1.addScore(points);
-      System.out.println(player1.getScore());
+      //System.out.println(player1.getScore());
     }
      selectedTile = null;
+     restockHand(player1);
      System.out.println("tile placed");
      
 }
 }
-}
+//}
   
 
   

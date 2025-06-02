@@ -8,9 +8,9 @@ import java.io.*;
       possibilities = new ArrayList<String>();
     }
     
-    public void reader(String name){
+    public void reader(String filename){
         try{
-            File file = new File("Dict.txt");
+            File file = new File(dataPath(filename));
             Scanner sc = new Scanner(file);
             while(sc.hasNextLine()){
                 possibilities.add(sc.nextLine());
@@ -22,6 +22,15 @@ import java.io.*;
     }
 
     public boolean result(String input){
+      for(int x = 1; x < possibilities.size();x++){
+              String imp = possibilities.get(x);
+              int j = x - 1;
+              while(j >=0 && possibilities.get(j).compareTo(imp)>0){
+                possibilities.set(j+1, possibilities.get(j));
+                j--;
+              }
+              possibilities.set(j+1, imp);
+            }
       
         int lo = 0;
         int end = possibilities.size() - 1;
