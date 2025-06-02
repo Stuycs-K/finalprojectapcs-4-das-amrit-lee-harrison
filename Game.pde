@@ -12,8 +12,8 @@ int tileSize = 40;
  
 void setup(){
   size(600, 800);
-    initializeBoard();
-    initializePlayers();
+  initializeBoard();
+  initializePlayers();
 }
 
 void initializePlayers() {
@@ -75,8 +75,8 @@ void restockHand(Player player) {
   player.drawTiles(tilesGiven);
   for (int i =0; i < player1.getHand().size();i++) {
     player.getHand().get(i).setLocation(100 + (i * 50), 730);
-}
-}
+  }
+ }
 }
 
 boolean gameOver() {
@@ -98,7 +98,7 @@ void draw() {
 void drawRack() {
   int increment = 20;
   textSize(30);
-  text("Player 1", 20, 760);
+  text("Player 1", 30, 650);
   for (Tile t: player1.getHand()) {
     t.display();
     increment+=50;

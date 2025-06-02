@@ -40,4 +40,13 @@ import java.io.*;
     }
     return dictionary.result(current);
   }
+  
+  public int scoreup(){
+    int x = 0;
+    if(this.found()){
+      for(int y = 0; y <hand.size(); y++){
+        x += hand.get(y).getValue();
+      }
+    }
+    return x;
 }
