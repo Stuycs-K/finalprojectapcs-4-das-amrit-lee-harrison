@@ -1,8 +1,8 @@
 PERIOD 4
 Amrit Das, Harrison Lee
-Group Name: TBD[Harrison out on Monday]
+Group Name: Scrabble Kings
 
-Our project aims to create a digital Scrabble game, with useful consumer interactions. We will use code to go through dictionaries in order to load words which have 7-letters and then use things like classes in order to create tiles. Currently, our vision is that we can have an overarching "Tile" class where the players can use and interact with these tiles to play the game. We believe we will need to get better and taking in user input--especially a sort of drag function. (Harrison--edit/add more here after AP on Monday)
+Our project aims to create a digital Scrabble game, with useful consumer interactions. We will use code to go through dictionaries in order to load words which have 7-letters and then use things like classes in order to create tiles. Currently, our vision is that we can have an overarching "Tile" class where the players can use and interact with these tiles to play the game. We believe we will need to get better and taking in user input--especially a sort of drag function. 
 # Technical Details:
 A description of your technical design. This should include: 
 How you will be using the topics covered in class in the project.
@@ -15,7 +15,6 @@ We plan to use a wide array of tools/topics covered in class for this project. F
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
-Harrison- Diagrams
 
 Old UML:
 ~~![image](https://github.com/user-attachments/assets/ef51e1e5-c39a-4802-9ca0-404d57d006fb)~~

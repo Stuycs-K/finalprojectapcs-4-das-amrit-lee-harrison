@@ -5,6 +5,7 @@ import java.io.*;
     public  Tile[][] board;
     public  int[][] lettermultipliers;
     public  int[][] wordmultipliers;
+    public boolean[][] status;
     
     public Board(){
         board = new Tile[15][15];
@@ -16,7 +17,12 @@ import java.io.*;
        //  }
         lettermultipliers = new int[15][15];
         wordmultipliers = new int[15][15];
-        
+        status = new boolean[15][15];
+        for(int x = 0; x < 15; x++){
+          for(int y = 0; y< 15; y++){
+            status[x][y] = false;
+          }
+        }
     }
 
     public  void lettering(){
@@ -77,6 +83,10 @@ import java.io.*;
         wordmultipliers[7][7] = 3;
         wordmultipliers[7][14] = 3;
 
+    }
+    
+    public void setStatus(int x, int y, boolean stas){
+      status[x][y] = stas;
     }
     
     public Tile getBoard(int x, int y) {
