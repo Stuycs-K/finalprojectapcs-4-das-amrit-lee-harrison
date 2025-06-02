@@ -4,12 +4,12 @@ Board grid = new Board();
 Player player1;
 Player player2;
 tilePool tilePool;
-Dictionary dictionary;
+Dictionary dictionary = new Dictionary();
 Tile selectedTile;
 
 //Size of board Vars
 int tileSize = 40;
-
+ 
 void setup(){
   size(600, 800);
     initializeBoard();
@@ -17,12 +17,12 @@ void setup(){
 }
 
 void initializePlayers() {
-    player1 = new Player("Player");
+  player1 = new Player("Player");
   player2 = new Player("Player 2");
   dictionary = new Dictionary();
-    tilePool = new tilePool();
+  tilePool = new tilePool();
   restockHand(player1);
-   restockHand(player2);
+  restockHand(player2);
 }
 
 void initializeBoard() {
@@ -56,16 +56,16 @@ void initializeBoard() {
   text("Triple Letter", 525, 645);
   fill(255,120,0);
   rect(500, 660, 15, 15);
-  text("Double Letter", 525, 670);
+  text("Double Word", 525, 670);
   fill(255,0,0);
   rect(500, 690, 15, 15);
-  text("Triple Letter", 525, 700);
+  text("Triple Word", 525, 700);
   //Score's of players
    noFill();
    rect(490, 720, 120, 120);
    line(490, 760, 600, 760);
-  text("Player 1 Score", 525, 620);
-  text("Double Letter", 525, 620);
+  text("Player 1 Score", 515, 730);
+  text("Player 2 Score", 515,770);
 }
 
 void restockHand(Player player) {
@@ -98,7 +98,7 @@ void draw() {
 void drawRack() {
   int increment = 20;
   textSize(30);
-  text("Player 1", 10, 760);
+  text("Player 1", 20, 760);
   for (Tile t: player1.getHand()) {
     t.display();
     increment+=50;

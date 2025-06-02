@@ -32,4 +32,12 @@ import java.io.*;
       hand.add(tilesToBeDrawn.get(i));
     }
   }
+  
+  public boolean found(){
+    String current = "";
+    for(int x = 0; x < hand.size(); x++){
+      current += hand.get(x).getLetter();
+    }
+    return dictionary.result(current);
+  }
 }
