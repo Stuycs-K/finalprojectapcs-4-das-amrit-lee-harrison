@@ -10,7 +10,7 @@ import java.io.*;
     
     public void reader(String name){
         try{
-            File file = new File(name);
+            File file = new File("Dict.txt");
             Scanner sc = new Scanner(file);
             while(sc.hasNextLine()){
                 possibilities.add(sc.nextLine());

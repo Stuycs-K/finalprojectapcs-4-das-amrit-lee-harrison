@@ -98,15 +98,14 @@ boolean gameOver() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
+  background(240);
+  initializeBoard();
   if(flag){
     drawRack(player1);
   }
   //else{
   //  drawRack(player2);
   //}
-  background(240);
-  initializeBoard();
-  drawRack();
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -165,6 +164,7 @@ void mousePressed() {
     }
     if(grid.wordle(xBoard,yBoard)){
       int points = grid.additions(xBoard,yBoard);
+      System.out.println(points);
       player1.addScore(points);
       System.out.println(player1.getScore());
     }
