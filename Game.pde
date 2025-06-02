@@ -105,14 +105,22 @@ void drawRack() {
 void mousePressed() {
   int xBoard = mouseX/ 40;
   int yBoard = mouseY/40;
+  if (mouseY > 600) {
   for (Tile tile: player1.getHand()) {
     if (tile.mouseOnTile(mouseX, mouseY) ) {
     }
     selectedTile = tile;
-    return;
+      System.out.println("" + mouseX);
+        System.out.println("" + mouseY);
+    System.out.println("Tile chosen");
   }
-  else if (grid.getBoard(xBoard, yBoard) == null) {
+  }
+   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
+  if (grid.getBoard(xBoard, yBoard) == null) {
    grid.setTile(xBoard, yBoard, selectedTile);
+   System.out.println("tile placed");
+   selectedTile = null;
+}
 }
 }
   
