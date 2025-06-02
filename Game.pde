@@ -5,6 +5,7 @@ Player player1;
 Player player2;
 tilePool tilePool;
 Dictionary dictionary;
+Tile selectedTile;
 
 //Size of board Vars
 int tileSize = 40;
@@ -72,6 +73,9 @@ void restockHand(Player player) {
   if (tilesNeeded >0 && tilePool.tilesLeft() > 0) {
   ArrayList<Tile> tilesGiven = tilePool.removeTiles(tilesNeeded);
   player.drawTiles(tilesGiven);
+  for (int i =0; i < player1.getHand().size();i++) {
+    player.getHand().get(i).setLocation(100 + (i * 50), 730);
+}
 }
 }
 
@@ -80,13 +84,48 @@ boolean gameOver() {
 }
 
 void draw() {
+  drawRack();
+  for (int i =0; i < 15; i++) {
+    for (int j = 0; j < 15; j++) {
+      Tile tile = grid.getBoard(i, j);
+      if (tile != null) {
+        tile.display();
+      }
+    }
+  }
+}
+
+void drawRack() {
+  int increment = 20;
+  textSize(30);
+  text("Player 1", 10, 760);
+  for (Tile t: player1.getHand()) {
+    t.display();
+    increment+=50;
+}
 }
 
 void mousePressed() {
-  System.out.println("" + player1.getHand().size());
-  for (int i =0; i < 7; i++) {
-    System.out.println(player1.getHand().get(i).getLetter());
+  int xBoard = mouseX/ 40;
+  int yBoard = mouseY/40;
+  if (mouseY > 600 && selectedTile == null) {
+     System.out.println( mouseX + ", " + mouseY);
+  for (Tile tile: player1.getHand()) {
+    System.out.println(tile.getX() + "," + tile.getY());
+    if (tile.mouseOnTile(mouseX, mouseY) ) {
+    selectedTile = tile;
+    return;
   }
+  }
+  }
+   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
+  if (grid.getBoard(xBoard, yBoard) == null) {
+   grid.setTile(xBoard, yBoard, selectedTile);
+   selectedTile.setLocation(xBoard * 40, yBoard * 40);
+   selectedTile = null;
+   System.out.println("tile placed");
+}
+}
 }
   
 

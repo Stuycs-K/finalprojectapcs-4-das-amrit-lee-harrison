@@ -2,6 +2,9 @@
     private char letter;
     private int letterValue;
     float x,y;
+    boolean inRack = true;
+    boolean selectedTile = false;
+    
 
     public Tile(char assignLetter, float x, float y) {
       letter = assignLetter;
@@ -30,9 +33,22 @@
       this.y = y;
     }
     
+    boolean mouseOnTile(int x, int y) {
+      return (x >= this.x && x <= this.x + 40 && y >= this.y && y <= this.y + 40);
+    }
+    
     public void display() {
-      rect(x, y, 15, 15);
+      fill(196, 164, 132);
+      rect(x, y, 40, 40);
+      fill(0,0,0);
+      textSize(30);
+      textAlign(CENTER, CENTER);
       text(letter, x+20, y+20);
+    }
+    
+    void setLocation(float x, float y) {
+      this.x = x;
+      this.y = y;
     }
     
     public float getX() {
