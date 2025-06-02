@@ -22,14 +22,15 @@ import java.io.*;
     }
 
     public boolean result(String input){
+      
         int lo = 0;
-        int end = possibilities.size();
-        int mid = possibilities.size() / 2;
+        int end = possibilities.size() - 1;
         while(lo <= end){
+            int mid = (lo + end) / 2;
             if(input.compareTo(possibilities.get(mid)) < 0){
-                end = possibilities.size() / 2;
+                end = mid - 1;
             } else if(input.compareTo(possibilities.get(mid)) > 0){
-                lo = (possibilities.size() /2) + 1;
+                lo = mid + 1;
             } else{
                 return true;
             }

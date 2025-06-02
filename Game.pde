@@ -3,7 +3,7 @@ import java.io.*;
 
 Board grid = new Board();
 Player player1;
-Player player2;
+//Player player2;
 tilePool tilePool;
 Dictionary dictionary = new Dictionary();
 boolean flag = true;
@@ -16,8 +16,6 @@ void setup(){
   size(600, 800);
   initializeBoard();
   initializePlayers();
-
-    initializePlayers();
 }
 
 
@@ -25,11 +23,11 @@ void setup(){
 //creating the players
 void initializePlayers() {
   player1 = new Player("Player 1");
-  player2 = new Player("Player 2");
+  //player2 = new Player("Player 2");
   dictionary = new Dictionary();
   tilePool = new tilePool();
   restockHand(player1);
-  restockHand(player2);
+  //restockHand(player2);
 }
 
 
@@ -95,7 +93,7 @@ void restockHand(Player player) {
 }
 
 boolean gameOver() {
-  return (player1.getScore() < 100 && player2.getScore() < 100);
+  return (player1.getScore() < 100); //&& player2.getScore() < 100);
 }
 
 //Method to draw the board when a tile has been placed on the board
@@ -103,9 +101,9 @@ void draw() {
   if(flag){
     drawRack(player1);
   }
-  else{
-    drawRack(player2);
-  }
+  //else{
+  //  drawRack(player2);
+  //}
   background(240);
   initializeBoard();
   drawRack();
@@ -117,6 +115,7 @@ void draw() {
       }
     }
   }
+  text("" + player1.getScore(), 550, 750);
 }
 
 //This drawRack should be dependent on the Player;
@@ -160,12 +159,18 @@ void mousePressed() {
      grid.setStatus(xBoard, yBoard, true);
      selectedTile.setLocation(xBoard * 40, yBoard * 40);
      int tileIndex = player1.tileIndex(selectedTile);
-     System.out.println(tileIndex);
+     //System.out.println(tileIndex);
      if (tileIndex >= 0) {
       player1.getHand().remove(tileIndex);
     }
+    if(grid.wordle(xBoard,yBoard)){
+      int points = grid.additions(xBoard,yBoard);
+      player1.addScore(points);
+      System.out.println(player1.getScore());
+    }
      selectedTile = null;
      System.out.println("tile placed");
+     
 }
 }
 }

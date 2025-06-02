@@ -6,6 +6,8 @@ import java.io.*;
     public  int[][] lettermultipliers;
     public  int[][] wordmultipliers;
     public boolean[][] status;
+    private ArrayList<Integer> temp1 = new ArrayList<Integer> ();
+    private ArrayList<Integer> temp2 = new ArrayList<Integer>();
     
     public Board(){
         board = new Tile[15][15];
@@ -102,18 +104,23 @@ import java.io.*;
     }
     
     public boolean wordlehor(int x, int y){
+      temp1.clear();
       int referen = x;
-      while(referen > 0 && status[15 - referen][y]){
+      while(referen > 0 && status[referen - 1][y]){
         referen--;
       }
       
-      if(!status[15 - referen][y]){
-        referen++;
-      }
+      //if(!status[15 - referen][y]){
+        //referen++;
+      //}
       
       String word = "";
-      for(int i = referen; i < 15 && status[15 - i][y];i++){
+      for(int i = referen; i < 15 && status[i][y];i++){
+        if(board[i][y] == null){
+          return false;
+        }
         word += board[i][y].getLetter();
+        temp1.add(i);
       }
       if(word.length() <= 1 || dictionary.result(word)){
         return true;
@@ -124,17 +131,21 @@ import java.io.*;
     
     public boolean wordlever(int x, int y){
       int referen = y;
-      while(referen > 0 && status[x][15 - referen]){
+      while(referen > 0 && status[x][referen - 1]){
         referen--;
       }
       
-      if(!status[x][15 - referen]){
-        referen++;
-      }
+      //if(!status[x][15 - referen]){
+        //referen++;
+      //}
       
       String word = "";
       for(int i = referen; i< 15 && status[x][15-i];i++){
+        if(board[x][i] == null){
+          return false;
+        }
         word += board[x][i].getLetter();
+        temp2.add(i);
       }
       if(word.length() <= 1 || dictionary.result(word)){
         return true;
@@ -144,12 +155,30 @@ import java.io.*;
     }
     
     public boolean wordle(int x, int y){
-      if(wordlehor(x,y) && wordlever(x,y)){
+      if(wordlehor(x,y) || wordlever(x,y)){
         return true;
       }
       return false;
     }
       
-    
+    public int additions(int x, int y){
+      int retu = 0;
+      if(!wordle(x,y)){
+        return 0;
+      }
+      if(wordlehor(x,y)){
+        for(int k = 0; k < temp1.size(); k++){
+          retu += lettermultipliers[temp1.get(k)][y] * board[temp1.get(k)][y].getValue();
+          retu += wordmultipliers[temp1.get(k)][y] * board[temp1.get(k)][y].getValue();
+        }
+      }
+      if(wordlever(x,y)){
+        for(int k = 0; k < temp2.size(); k++){
+          retu += lettermultipliers[temp2.get(k)][y] * board[x][temp2.get(k)].getValue();
+          retu += wordmultipliers[temp2.get(k)][y] * board[x][temp2.get(k)].getValue();
+        }
+      }
+      return retu;
+    }
       
 }
