@@ -79,13 +79,6 @@ import java.io.*;
 
     }
     
-    public  int getlet(int x, int y){
-      return lettermultipliers[x][y];
-    }
-    public  int getwor(int x, int y){
-      return wordmultipliers[x][y];
-    }
-    
     public Tile getBoard(int x, int y) {
       return board[x][y];
     }

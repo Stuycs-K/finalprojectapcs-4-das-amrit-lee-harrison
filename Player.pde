@@ -18,6 +18,9 @@ import java.io.*;
   public int getScore() {
     return score;
   }
+  public String scr(){
+    return String.valueOf(score);
+  }
 
   public String getName() {
     return name;
@@ -49,4 +52,5 @@ import java.io.*;
       }
     }
     return x;
+  }
 }

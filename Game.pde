@@ -1,23 +1,28 @@
 import java.util.*;
+import java.io.*;
 
 Board grid = new Board();
 Player player1;
 Player player2;
 tilePool tilePool;
 Dictionary dictionary = new Dictionary();
+boolean flag = true;
 Tile selectedTile;
 
 //Size of board Vars
 int tileSize = 40;
- 
+//SETUP
 void setup(){
   size(600, 800);
   initializeBoard();
   initializePlayers();
 }
 
+
+
+//creating the players
 void initializePlayers() {
-  player1 = new Player("Player");
+  player1 = new Player("Player 1");
   player2 = new Player("Player 2");
   dictionary = new Dictionary();
   tilePool = new tilePool();
@@ -25,8 +30,13 @@ void initializePlayers() {
   restockHand(player2);
 }
 
+
+
+
+
+//setting up the board
 void initializeBoard() {
-   grid.lettering();
+  grid.lettering();
   grid.wording();
   for(int x = 0; x < 15; x++){
     for(int y =0; y < 15; y++){
@@ -68,14 +78,17 @@ void initializeBoard() {
   text("Player 2 Score", 515,770);
 }
 
+
+
+//Restocking the hand for the player;
 void restockHand(Player player) {
   int tilesNeeded = 7 - player.getHand().size();
   if (tilesNeeded >0 && tilePool.tilesLeft() > 0) {
-  ArrayList<Tile> tilesGiven = tilePool.removeTiles(tilesNeeded);
-  player.drawTiles(tilesGiven);
-  for (int i =0; i < player1.getHand().size();i++) {
-    player.getHand().get(i).setLocation(100 + (i * 50), 730);
-  }
+    ArrayList<Tile> tilesGiven = tilePool.removeTiles(tilesNeeded);
+    player.drawTiles(tilesGiven);
+    for (int i =0; i < player.getHand().size();i++) {
+      player.getHand().get(i).setLocation(100 + (i * 50), 730);
+    }
  }
 }
 
@@ -83,8 +96,14 @@ boolean gameOver() {
   return (player1.getScore() < 100 && player2.getScore() < 100);
 }
 
+//Method to draw the board when a tile has been placed on the board
 void draw() {
-  drawRack();
+  if(flag){
+    drawRack(player1);
+  }
+  else{
+    drawRack(player2);
+  }
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -95,14 +114,18 @@ void draw() {
   }
 }
 
-void drawRack() {
+//This drawRack should be dependent on the Player;
+
+void drawRack(Player player) {
   int increment = 20;
-  textSize(30);
-  text("Player 1", 30, 650);
+  textSize(20);
+  text(player.getName(), 30, 650);
   for (Tile t: player1.getHand()) {
     t.display();
     increment+=50;
-}
+  }
+  
+
 }
 
 void mousePressed() {
@@ -118,7 +141,7 @@ void mousePressed() {
   }
   }
   }
-   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
+  if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
   if (grid.getBoard(xBoard, yBoard) == null) {
    grid.setTile(xBoard, yBoard, selectedTile);
    selectedTile.setLocation(xBoard * 40, yBoard * 40);
