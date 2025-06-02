@@ -82,7 +82,6 @@ import java.io.*;
         wordmultipliers[14][7] = 3;
         wordmultipliers[14][14] = 3;
         wordmultipliers[7][0] = 3;
-        wordmultipliers[7][7] = 3;
         wordmultipliers[7][14] = 3;
 
     }
@@ -130,6 +129,7 @@ import java.io.*;
     }
     
     public boolean wordlever(int x, int y){
+      temp2.clear();
       int referen = y;
       while(referen > 0 && status[x][referen - 1]){
         referen--;
@@ -144,6 +144,7 @@ import java.io.*;
         if(board[x][i] == null){
           return false;
         }
+        System.out.println(board[x][i]);
         word += board[x][i].getLetter();
         temp2.add(i);
       }

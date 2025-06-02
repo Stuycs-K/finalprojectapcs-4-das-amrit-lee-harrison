@@ -8,17 +8,15 @@ tilePool tilePool;
 Dictionary dictionary = new Dictionary();
 boolean flag = true;
 Tile selectedTile;
-ArrayList<Tile> placedTiles = new ArrayList<Tile>();
-boolean firstLetterSelected = false;
 
 //Size of board Vars
 int tileSize = 40;
 //SETUP
 void setup(){
   size(600, 800);
-  dictionary.reader("Dict.txt");
   initializeBoard();
   initializePlayers();
+  dictionary.reader("Dict.txt");
 }
 
 
@@ -101,15 +99,12 @@ boolean gameOver() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
-  if(flag){
-    drawRack(player1);
-  }
+  background(240);
+  initializeBoard();
+  drawRack(player1);
   //else{
   //  drawRack(player2);
   //}
-  background(240);
-  initializeBoard();
-  drawRack();
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -144,27 +139,12 @@ void drawRack() {
 }
 
 void mousePressed() {
-   String input = "";
-        for (int i =0; i <placedTiles.size(); i++) {
-          input += placedTiles.get(i).getLetter();
-        }
   int xBoard = mouseX/ 40;
   int yBoard = mouseY/40;
-  if (mouseButton == CENTER && firstLetterSelected == false  && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
-    placedTiles.add(selectedTile);
-    firstLetterSelected = true;
-    System.out.println("Selected");
-  }
-
-  if (mouseButton == RIGHT && dictionary.result(input)) {
-     firstLetterSelected = false;
-     System.out.println("word good");
-    //confirms word
-    return;
-  }
   if (mouseY > 600 && selectedTile == null) {
-     System.out.println( mouseX + ", " + mouseY);
-  for (Tile tile: player1.getHand()) {
+     //System.out.println( mouseX + ", " + mouseY);
+    for (Tile tile: player1.getHand()) {
+    //System.out.println(tile.getX() + "," + tile.getY());
     if (tile.mouseOnTile(mouseX, mouseY) ) {
     selectedTile = tile;
     return;
@@ -173,26 +153,28 @@ void mousePressed() {
   }
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
     if (grid.getBoard(xBoard, yBoard) == null) {
-     grid.setTile(xBoard, yBoard, selectedTile);
-     placedTiles.add(selectedTile);
-     grid.setStatus(xBoard, yBoard, true);
-     selectedTile.setLocation(xBoard * 40, yBoard * 40);
-     int tileIndex = player1.tileIndex(selectedTile);
+       grid.setTile(xBoard, yBoard, selectedTile);
+       grid.setStatus(xBoard, yBoard, true);
+       selectedTile.setLocation(xBoard * 40, yBoard * 40);
+       int tileIndex = player1.tileIndex(selectedTile);
      //System.out.println(tileIndex);
-     if (tileIndex >= 0) {
-      player1.getHand().remove(tileIndex);
+       if (tileIndex >= 0) {
+          player1.getHand().remove(tileIndex);
+        }
     }
     if(grid.wordle(xBoard,yBoard)){
       int points = grid.additions(xBoard,yBoard);
+      //System.out.println(points);
       player1.addScore(points);
-      System.out.println(player1.getScore());
+      //System.out.println(player1.getScore());
     }
      selectedTile = null;
+     restockHand(player1);
      System.out.println("tile placed");
      
 }
 }
-}
+//}
   
 
   
