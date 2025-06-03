@@ -102,11 +102,13 @@ boolean gameOver() {
 void draw() {
   initializeBoard();
   drawConfirmButton();
-  drawRack(player1);
   drawWarnings();
-  //else{
-  //  drawRack(player2);
-  //}
+  if (flag) {
+      drawRack(player1);
+  }
+  else{
+   drawRack(player2);
+  }
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -130,7 +132,7 @@ void drawRack(Player player) {
 
 //warns the user does something bad 
 void drawWarnings() {
-  fill(200,208,200);
+  fill(tileWarningColor);
   text("Warning: This spot already has a tile!", 250, 630);
 }
 
