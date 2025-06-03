@@ -100,10 +100,10 @@ boolean gameOver() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
-  background(240);
   initializeBoard();
   drawConfirmButton();
   drawRack(player1);
+  drawWarnings();
   //else{
   //  drawRack(player2);
   //}
@@ -121,13 +121,17 @@ void draw() {
 //This drawRack should be dependent on the Player;
 
 void drawRack(Player player) {
-  int increment = 20;
   textSize(10);
   text(player.getName(), 30, 650);
   for (Tile t : player1.getHand()) {
     t.display();
-    increment+=50;
   }
+}
+
+//warns the user does something bad 
+void drawWarnings() {
+  fill(200,208,200);
+  text("Warning: This spot already has a tile!", 250, 630);
 }
 
 void drawConfirmButton() {
@@ -174,6 +178,8 @@ void mousePressed() {
       if (tileIndex >= 0) {
         player1.getHand().remove(tileIndex);
       }
+    }
+    else { 
     }
     if (grid.wordle(xBoard, yBoard)) {
       int points = grid.additions(xBoard, yBoard);
