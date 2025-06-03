@@ -50,16 +50,16 @@ void initializeBoard() {
         fill(255, 120, 0);
       } else if (grid.wordmultipliers[x][y] == 3) {
         fill(255, 0, 0);
-      } else if(x == 7 && y == 7){
-        fill(255,0,0);
-      }else {
+      } else if (x == 7 && y == 7) {
+        fill(255, 0, 0);
+      } else {
         fill(255);
       }
       square(x * tileSize, y *tileSize, tileSize);
     }
   }
-  
- 
+
+
 
   noFill();
   //Multiplier key
@@ -179,16 +179,17 @@ void mousePressed() {
         player1.getHand().remove(tileIndex);
       }
     }
+    selectedTile = null;
+    restockHand(player1);
+    System.out.println("tile placed");
+    counter++;
+  }
+  if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
     if (grid.wordle(xBoard, yBoard)) {
       int points = grid.additions(xBoard, yBoard);
       //System.out.println(points);
       player1.addScore(points);
       //System.out.println(player1.getScore());
     }
-    selectedTile = null;
-    restockHand(player1);
-    System.out.println("tile placed");
-    counter++;
   }
-}
-//}
+  //}
