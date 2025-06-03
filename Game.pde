@@ -50,12 +50,16 @@ void initializeBoard() {
         fill(255, 120, 0);
       } else if (grid.wordmultipliers[x][y] == 3) {
         fill(255, 0, 0);
-      } else {
+      } else if(x == 7 && y == 7){
+        fill(255,0,0);
+      }else {
         fill(255);
       }
       square(x * tileSize, y *tileSize, tileSize);
     }
   }
+  
+ 
 
   noFill();
   //Multiplier key
