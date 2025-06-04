@@ -137,12 +137,16 @@ void drawRack(Player player) {
 
 //warns the user does something bad 
 void drawWarnings() {
-  if (tileWarning) {
+  if (tileWarning == false) {
     time = millis();
-    tileWarning = false;
   }
-  if (millis() - time > interval) {
+  if (millis() - time < interval && tileWarning == true) {
+    System.out.println(millis());
+    System.out.println(time);
   text("Warning: This spot already has a tile!", 250, 630);
+  }
+  if (millis() - time >= interval) {
+    tileWarning = false;
   }
 }
 
@@ -201,7 +205,6 @@ void mousePressed() {
       //System.out.println(player1.getScore());
     }
     selectedTile = null;
-    restockHand(player1);
     System.out.println("tile placed");
     counter++;
   }
