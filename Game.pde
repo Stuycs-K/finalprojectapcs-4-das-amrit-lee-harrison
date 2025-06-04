@@ -182,6 +182,7 @@ void mousePressed() {
       //System.out.println(points);
       player1.addScore(points);
       //System.out.println(player1.getScore());
+      counter = 0;
     }
   }
 }
