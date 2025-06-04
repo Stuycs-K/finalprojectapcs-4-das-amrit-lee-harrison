@@ -3,12 +3,16 @@ import java.io.*;
 
 Board grid = new Board();
 Player player1;
-//Player player2;
+Player player2;
 tilePool tilePool;
 Dictionary dictionary = new Dictionary();
 boolean flag = true;
 Tile selectedTile;
 int counter =0;
+int time;
+int interval = 2000; //2s
+//warnings
+boolean tileWarning = false;
 
 //Size of board Vars
 int tileSize = 40;
@@ -25,7 +29,7 @@ void setup() {
 //creating the players
 void initializePlayers() {
   player1 = new Player("Player 1");
-  //player2 = new Player("Player 2");
+  player2 = new Player("Player 2");
   dictionary = new Dictionary();
   tilePool = new tilePool();
   restockHand(player1);
@@ -100,6 +104,7 @@ boolean gameOver() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
+  background(211,211,211);
   initializeBoard();
   drawConfirmButton();
   drawWarnings();
@@ -132,8 +137,13 @@ void drawRack(Player player) {
 
 //warns the user does something bad 
 void drawWarnings() {
-  fill(tileWarningColor);
+  if (tileWarning) {
+    time = millis();
+    tileWarning = false;
+  }
+  if (millis() - time > interval) {
   text("Warning: This spot already has a tile!", 250, 630);
+  }
 }
 
 void drawConfirmButton() {
@@ -182,6 +192,7 @@ void mousePressed() {
       }
     }
     else { 
+       tileWarning = true;
     }
     if (grid.wordle(xBoard, yBoard)) {
       int points = grid.additions(xBoard, yBoard);
