@@ -8,11 +8,15 @@ tilePool tilePool;
 Dictionary dictionary = new Dictionary();
 boolean flag = true;
 Tile selectedTile;
+<<<<<<< HEAD
 int counter =0;
 int time;
 int interval = 2000; //2s
 //warnings
 boolean tileWarning = false;
+=======
+int counter = 0;
+>>>>>>> 6a8a8fa498f35df04f87222b4ce6c37f9231057f
 
 //Size of board Vars
 int tileSize = 40;
@@ -54,13 +58,14 @@ void initializeBoard() {
         fill(255, 120, 0);
       } else if (grid.wordmultipliers[x][y] == 3) {
         fill(255, 0, 0);
+      } else if (x == 7 && y == 7) {
+        fill(255, 0, 0);
       } else {
         fill(255);
       }
       square(x * tileSize, y *tileSize, tileSize);
     }
   }
-
   noFill();
   //Multiplier key
   rect(490, 600, 120, 120);
@@ -156,13 +161,7 @@ void drawConfirmButton() {
   fill(0, 0, 0);
   text("Confirm Word", 430, 670);
   //function to check dictionary
-  counter = 0;
 }
-
-
-
-
-
 void drawRack() {
   textSize(20);
   text("Player 1", 30, 620);
@@ -186,6 +185,8 @@ void mousePressed() {
   }
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
     if (grid.getBoard(xBoard, yBoard) == null) {
+      counter++;
+      System.out.println(counter);
       grid.setTile(xBoard, yBoard, selectedTile);
       grid.setStatus(xBoard, yBoard, true);
       selectedTile.setLocation(xBoard * 40, yBoard * 40);
@@ -195,6 +196,7 @@ void mousePressed() {
         player1.getHand().remove(tileIndex);
       }
     }
+
     else { 
        tileWarning = true;
     }
@@ -206,7 +208,14 @@ void mousePressed() {
     }
     selectedTile = null;
     System.out.println("tile placed");
-    counter++;
+  }
+  if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
+    if (grid.wordle(xBoard, yBoard, counter)) {
+      int points = grid.additions(xBoard, yBoard, counter);
+      //System.out.println(points);
+      player1.addScore(points);
+      //System.out.println(player1.getScore());
+      counter = 0;
+    }
   }
 }
-//}
