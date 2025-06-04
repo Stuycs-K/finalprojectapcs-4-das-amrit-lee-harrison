@@ -137,7 +137,6 @@ void drawConfirmButton() {
   fill(0, 0, 0);
   text("Confirm Word", 430, 670);
   //function to check dictionary
-  counter = 0;
 }
 void drawRack() {
   textSize(20);
