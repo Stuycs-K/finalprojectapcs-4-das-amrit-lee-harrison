@@ -103,11 +103,9 @@ class Board {
 
   public boolean wordlehor(int x, int y, int counts) {
     temp1.clear();
-    //if(!status[15 - referen][y]){
-    //referen++;
-    //}
     String word = "";
     while (counts >= 0) {
+      System.out.println(counts);
       word += board[x][y - counts].getLetter();
       temp1.add(y- counts);
       counts--;
@@ -138,18 +136,18 @@ class Board {
     return false;
   }
 
-  public int additions(int x, int y) {
+  public int additions(int x, int y, int counts) {
     int retu = 0;
-    if (!wordle(x, y)) {
+    if (!wordle(x, y, counts)) {
       return 0;
     }
-    if (wordlehor(x, y)) {
+    if (wordlehor(x, y, counts)) {
       for (int k = 0; k < temp1.size(); k++) {
         retu += lettermultipliers[temp1.get(k)][y] * board[temp1.get(k)][y].getValue();
         retu += wordmultipliers[temp1.get(k)][y] * board[temp1.get(k)][y].getValue();
       }
     }
-    if (wordlever(x, y)) {
+    if (wordlever(x, y, counts)) {
       for (int k = 0; k < temp2.size(); k++) {
         retu += lettermultipliers[temp2.get(k)][y] * board[x][temp2.get(k)].getValue();
         retu += wordmultipliers[temp2.get(k)][y] * board[x][temp2.get(k)].getValue();
