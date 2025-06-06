@@ -11,12 +11,6 @@ class Board {
 
   public Board() {
     board = new Tile[15][15];
-    //for (int i =0; i < 15; i++) {
-    // for (int j = 0; j < 15; j++) {
-    // Tile tile = new Tile('A', 30, 30);
-    //  board[i][j] = tile;
-    //  }
-    //  }
     lettermultipliers = new int[15][15];
     wordmultipliers = new int[15][15];
     status = new boolean[15][15];
@@ -104,7 +98,7 @@ class Board {
   public boolean wordlehor(int x, int y, int counts) {
     temp1.clear();
     String word = "";
-    while (counts >= 0) {
+    while (counts > 0) {
       System.out.println(counts);
       word += board[x][y - counts].getLetter();
       temp1.add(y- counts);
@@ -119,7 +113,7 @@ class Board {
   public boolean wordlever(int x, int y, int counts) {
     temp2.clear();
     String word = "";
-    while (counts >= 0) {
+    while (counts > 0) {
       word += board[x - counts][y].getLetter();
       temp2.add(x -counts);
     }
