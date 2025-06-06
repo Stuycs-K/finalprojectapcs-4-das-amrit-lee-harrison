@@ -12,6 +12,8 @@ int counter = 0;
 int time;
 int interval = 2000;
 boolean tileWarning;
+int lastx = 0;
+int lasty = 0;
 
 //Size of board Vars
 int tileSize = 40;
@@ -187,6 +189,8 @@ void mousePressed() {
       grid.setTile(xBoard, yBoard, selectedTile);
       grid.setStatus(xBoard, yBoard, true);
       selectedTile.setLocation(xBoard * 40, yBoard * 40);
+      lastx = xBoard;
+      lasty = yBoard;
       int tileIndex = player1.tileIndex(selectedTile);
       //System.out.println(tileIndex);
       if (tileIndex >= 0) {
@@ -201,8 +205,8 @@ void mousePressed() {
     System.out.println("tile placed");
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
-    if (grid.wordle(xBoard, yBoard, counter)) {
-      int points = grid.additions(xBoard, yBoard, counter);
+    if (grid.wordle(lastx,lasty , counter)) {
+      int points = grid.additions(lastx,lasty , counter);
       //System.out.println(points);
       player1.addScore(points);
       //System.out.println(player1.getScore());
