@@ -99,9 +99,11 @@ class Board {
     temp1.clear();
     String word = "";
     while (counts > 0) {
-      System.out.println(counts);
-      word += board[x][y - counts].getLetter();
-      temp1.add(y- counts);
+
+      if(board[x- counts][y] != null){
+        word += board[x-counts][y].getLetter();
+      }
+      temp1.add(x- counts);
       counts--;
     }
     if (dictionary.result(word)) {
@@ -114,8 +116,12 @@ class Board {
     temp2.clear();
     String word = "";
     while (counts > 0) {
-      word += board[x - counts][y].getLetter();
-      temp2.add(x -counts);
+      //adding
+      if(board[x][y - counts] != null){
+        word += board[x][y - counts];
+      }
+      temp2.add(y - counts);
+      counts--;
     }
     if (dictionary.result(word)) {
       return true;
