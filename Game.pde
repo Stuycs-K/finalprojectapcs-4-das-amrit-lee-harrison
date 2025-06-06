@@ -9,6 +9,9 @@ Dictionary dictionary = new Dictionary();
 boolean flag = true;
 Tile selectedTile;
 int counter = 0;
+int time;
+int interval = 2000;
+boolean tileWarning;
 
 //Size of board Vars
 int tileSize = 40;
@@ -20,6 +23,44 @@ void setup() {
   dictionary.reader("Dict.txt");
 }
 
+//Method to draw the board when a tile has been placed on the board
+void draw() {
+  background(211,211,211);
+  initializeBoard();
+  drawConfirmButton();
+  drawWarnings();
+  if (flag) {
+      drawRack(player1);
+  }
+  //else{
+     //drawRack(player2);
+  //}
+  for (int i =0; i < 15; i++) {
+    for (int j = 0; j < 15; j++) {
+      Tile tile = grid.getBoard(i, j);
+      if (tile != null) {
+        tile.display();
+      }
+    }
+  }
+  text("" + player1.getScore(), 550, 750);
+}
+
+
+//warns the user does something bad 
+void drawWarnings() {
+  if (tileWarning == false) {
+    time = millis();
+  }
+  if (millis() - time < interval && tileWarning == true) {
+    System.out.println(millis());
+    System.out.println(time);
+  text("Warning: This spot already has a tile!", 250, 630);
+  }
+  if (millis() - time >= interval) {
+    tileWarning = false;
+  }
+}
 
 
 //creating the players
@@ -99,26 +140,6 @@ boolean gameOver() {
   return (player1.getScore() < 100); //&& player2.getScore() < 100);
 }
 
-//Method to draw the board when a tile has been placed on the board
-void draw() {
-  background(240);
-  initializeBoard();
-  drawConfirmButton();
-  drawRack(player1);
-  //else{
-  //  drawRack(player2);
-  //}
-  for (int i =0; i < 15; i++) {
-    for (int j = 0; j < 15; j++) {
-      Tile tile = grid.getBoard(i, j);
-      if (tile != null) {
-        tile.display();
-      }
-    }
-  }
-  text("" + player1.getScore(), 550, 750);
-}
-
 //This drawRack should be dependent on the Player;
 
 void drawRack(Player player) {
@@ -171,6 +192,9 @@ void mousePressed() {
       if (tileIndex >= 0) {
         player1.getHand().remove(tileIndex);
       }
+    }
+    else {
+      tileWarning = true;
     }
     selectedTile = null;
     restockHand(player1);
