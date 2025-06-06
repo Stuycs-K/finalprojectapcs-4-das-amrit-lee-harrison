@@ -11,6 +11,8 @@ Tile selectedTile;
 int counter = 0;
 int interval = 2000;
 int turn = 0;
+boolean win1 = false;
+boolean win2 = false;
 //tile placed on another
 int time1;
 boolean tileWarning;
@@ -68,10 +70,10 @@ void drawWarnings() {
    if (tileWarning2 == false) {
     time2 = millis();
   }
-  if (millis() - time2 < interval && tileWarning == true) {
+  if (millis() - time2 < interval && tileWarning2 == true) {
     System.out.println(millis());
     System.out.println(time2);
-  text("Warning: This spot already has a tile!", 250, 630);
+  text("Put the tile in the center spot!", 250, 630);
   }
   if (millis() - time2 >= interval) {
     tileWarning2 = false;
@@ -152,8 +154,10 @@ void restockHand(Player player) {
   }
 }
 
-boolean gameOver() {
-  return (player1.getScore() < 100); //&& player2.getScore() < 100);
+void gameOver() {
+  if (player1.getScore() >= 100) {
+    win1 = true;
+  }
 }
 
 //This drawRack should be dependent on the Player;
@@ -219,7 +223,6 @@ void mousePressed() {
       tileWarning = true;
     }
     selectedTile = null;
-    restockHand(player1);
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
     if (grid.wordle(xBoard, yBoard, counter)) {
