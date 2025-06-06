@@ -51,3 +51,10 @@ In- Class:
 ## 2025-06-03
 
 30mins(class) - working on making the confirm button for a word functional. This involved editing the mouseClicked function as well as our word checking functions in order to ensure proper functionality.
+
+## 2025-06-04
+
+30mins(class)- still debugging the confirm button...I am unsure why it's glitching but I will work on it to make it better.
+10mins- planning with Harrison how to debug, merge, and plan for our video submission
+
+## 2025-06-06
