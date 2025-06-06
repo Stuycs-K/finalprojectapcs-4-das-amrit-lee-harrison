@@ -99,9 +99,7 @@ class Board {
     temp1.clear();
     String word = "";
     while (counts > 0) {
-      System.out.println(counts);
-      //adding
-      System.out.println(x - counts + " " + y);
+
       if(board[x- counts][y] != null){
         word += board[x-counts][y].getLetter();
       }
