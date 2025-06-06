@@ -3,20 +3,12 @@ import java.io.*;
 
 Board grid = new Board();
 Player player1;
-Player player2;
+//Player player2;
 tilePool tilePool;
 Dictionary dictionary = new Dictionary();
 boolean flag = true;
 Tile selectedTile;
-<<<<<<< HEAD
-int counter =0;
-int time;
-int interval = 2000; //2s
-//warnings
-boolean tileWarning = false;
-=======
 int counter = 0;
->>>>>>> 6a8a8fa498f35df04f87222b4ce6c37f9231057f
 
 //Size of board Vars
 int tileSize = 40;
@@ -33,7 +25,7 @@ void setup() {
 //creating the players
 void initializePlayers() {
   player1 = new Player("Player 1");
-  player2 = new Player("Player 2");
+  //player2 = new Player("Player 2");
   dictionary = new Dictionary();
   tilePool = new tilePool();
   restockHand(player1);
@@ -109,16 +101,13 @@ boolean gameOver() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
-  background(211,211,211);
+  background(240);
   initializeBoard();
   drawConfirmButton();
-  drawWarnings();
-  if (flag) {
-      drawRack(player1);
-  }
-  else{
-   drawRack(player2);
-  }
+  drawRack(player1);
+  //else{
+  //  drawRack(player2);
+  //}
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -133,25 +122,12 @@ void draw() {
 //This drawRack should be dependent on the Player;
 
 void drawRack(Player player) {
+  int increment = 20;
   textSize(10);
   text(player.getName(), 30, 650);
   for (Tile t : player1.getHand()) {
     t.display();
-  }
-}
-
-//warns the user does something bad 
-void drawWarnings() {
-  if (tileWarning == false) {
-    time = millis();
-  }
-  if (millis() - time < interval && tileWarning == true) {
-    System.out.println(millis());
-    System.out.println(time);
-  text("Warning: This spot already has a tile!", 250, 630);
-  }
-  if (millis() - time >= interval) {
-    tileWarning = false;
+    increment+=50;
   }
 }
 
@@ -196,17 +172,8 @@ void mousePressed() {
         player1.getHand().remove(tileIndex);
       }
     }
-
-    else { 
-       tileWarning = true;
-    }
-    if (grid.wordle(xBoard, yBoard)) {
-      int points = grid.additions(xBoard, yBoard);
-      //System.out.println(points);
-      player1.addScore(points);
-      //System.out.println(player1.getScore());
-    }
     selectedTile = null;
+    restockHand(player1);
     System.out.println("tile placed");
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
