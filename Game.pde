@@ -9,9 +9,14 @@ Dictionary dictionary = new Dictionary();
 boolean flag = true;
 Tile selectedTile;
 int counter = 0;
-int time;
 int interval = 2000;
+int turn = 0;
+//tile placed on another
+int time1;
 boolean tileWarning;
+//tile not placed on starting tile
+int time2;
+boolean tileWarning2;
 
 //Size of board Vars
 int tileSize = 40;
@@ -50,15 +55,26 @@ void draw() {
 //warns the user does something bad 
 void drawWarnings() {
   if (tileWarning == false) {
-    time = millis();
+    time1 = millis();
   }
-  if (millis() - time < interval && tileWarning == true) {
+  if (millis() - time1 < interval && tileWarning == true) {
     System.out.println(millis());
-    System.out.println(time);
+    System.out.println(time1);
   text("Warning: This spot already has a tile!", 250, 630);
   }
-  if (millis() - time >= interval) {
+  if (millis() - time1 >= interval) {
     tileWarning = false;
+  }
+   if (tileWarning2 == false) {
+    time2 = millis();
+  }
+  if (millis() - time2 < interval && tileWarning == true) {
+    System.out.println(millis());
+    System.out.println(time2);
+  text("Warning: This spot already has a tile!", 250, 630);
+  }
+  if (millis() - time2 >= interval) {
+    tileWarning2 = false;
   }
 }
 
@@ -182,6 +198,11 @@ void mousePressed() {
   }
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
     if (grid.getBoard(xBoard, yBoard) == null) {
+      if (turn == 0 && (xBoard != 7 || yBoard != 7) && player1.getHand().size() == 7) {
+        System.out.println("time warning");
+        tileWarning2 = true;
+      }
+      else {
       counter++;
       System.out.println(counter);
       grid.setTile(xBoard, yBoard, selectedTile);
@@ -193,12 +214,12 @@ void mousePressed() {
         player1.getHand().remove(tileIndex);
       }
     }
+    }
     else {
       tileWarning = true;
     }
     selectedTile = null;
     restockHand(player1);
-    System.out.println("tile placed");
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
     if (grid.wordle(xBoard, yBoard, counter)) {
