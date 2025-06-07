@@ -35,3 +35,11 @@ Spent 30 mins coding the key for the multipliers and fixing the board spacing
 **2025-05-31 to 2025-06-01**
 **HOME**
 Spent 5 hours coding out how to display rack, place the tiles on the board, and how to verify the words placed"
+
+**2025-06-02**
+**ClASS**
+Spent 35 mins coding a way to display a text and then make it dissapear after a set interval.
+
+**2025-06-03**
+**ClASS**
+Spent 35 minutes adding a way to display a warning when a tile isn't placed in the middle on the first turn.
