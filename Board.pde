@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 class Board {
+  Dictionary dictionary;
   public  Tile[][] board;
   public  int[][] lettermultipliers;
   public  int[][] wordmultipliers;
@@ -9,7 +10,8 @@ class Board {
   private ArrayList<Integer> temp1 = new ArrayList<Integer> ();
   private ArrayList<Integer> temp2 = new ArrayList<Integer>();
 
-  public Board() {
+  public Board(Dictionary dictionary) {
+    this.dictionary = dictionary;
     board = new Tile[15][15];
     lettermultipliers = new int[15][15];
     wordmultipliers = new int[15][15];
@@ -98,13 +100,15 @@ class Board {
   public boolean wordlehor(int x, int y, int counts) {
     temp1.clear();
     String word = "";
-    while (counts > 0) {
-
-      if(board[x- counts][y] != null){
-        word += board[x-counts][y].getLetter();
+    while (counts >= 0) {
+      if (board[x - counts][y] != null) {
+        word += board[x - counts][y].getLetter();
       }
-      temp1.add(x- counts);
+      temp1.add(x - counts); 
       counts--;
+
+      System.out.println(temp1.toString());
+      System.out.println(word);
     }
     if (dictionary.result(word)) {
       return true;
@@ -115,12 +119,11 @@ class Board {
   public boolean wordlever(int x, int y, int counts) {
     temp2.clear();
     String word = "";
-    while (counts > 0) {
-      //adding
-      if(board[x][y - counts] != null){
-        word += board[x][y - counts];
+    while (counts >= 0) {
+      if (board[x][y - counts] != null) {
+        word += board[x][y - counts].getLetter();
       }
-      temp2.add(y - counts);
+      temp2.add(y - counts);  // <-- add before decrement
       counts--;
     }
     if (dictionary.result(word)) {
@@ -138,21 +141,41 @@ class Board {
 
   public int additions(int x, int y, int counts) {
     int retu = 0;
+    int mult = 1;
     if (!wordle(x, y, counts)) {
       return 0;
     }
     if (wordlehor(x, y, counts)) {
       for (int k = 0; k < temp1.size(); k++) {
-        retu += lettermultipliers[temp1.get(k)][y] * board[temp1.get(k)][y].getValue();
-        retu += wordmultipliers[temp1.get(k)][y] * board[temp1.get(k)][y].getValue();
+        int xo = temp1.get(k);
+        Tile tile = board[xo][y];
+        int lmulti;
+        if (lettermultipliers[xo][y] > 0) {
+          lmulti = lettermultipliers[xo][y];
+        } else {
+          lmulti = 1;
+        }
+        retu += tile.getValue() * lmulti;
+        if (wordmultipliers[xo][y] > 0) {
+          mult *= wordmultipliers[xo][y];
+        }
       }
-    }
-    if (wordlever(x, y, counts)) {
+    } else if (wordlever(x, y, counts)) {
       for (int k = 0; k < temp2.size(); k++) {
-        retu += lettermultipliers[temp2.get(k)][y] * board[x][temp2.get(k)].getValue();
-        retu += wordmultipliers[temp2.get(k)][y] * board[x][temp2.get(k)].getValue();
+        int yo = temp2.get(k);
+        Tile tile = board[x][yo];
+        int letmulti;
+        if (lettermultipliers[x][yo] > 0) {
+          letmulti = lettermultipliers[x][yo];
+        } else {
+          letmulti = 1;
+        }
+        retu += tile.getValue() * letmulti;
+        if (wordmultipliers[x][yo] > 0) {
+          mult *= wordmultipliers[x][yo];
+        }
       }
     }
-    return retu;
+    return retu * mult;
   }
 }
