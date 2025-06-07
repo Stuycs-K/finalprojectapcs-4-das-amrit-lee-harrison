@@ -58,3 +58,6 @@ In- Class:
 10mins- planning with Harrison how to debug, merge, and plan for our video submission
 
 ## 2025-06-06
+
+30mins(class)- worked the debugging on the confirm button by testing using the printing of array coordinates
+10mins(class)- astarted to work during the class period on the issue of why the confirm button is not checking the dictionary if we have a word or not...which is an issue

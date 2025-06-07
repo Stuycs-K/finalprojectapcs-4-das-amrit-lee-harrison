@@ -1,11 +1,11 @@
 import java.util.*;
 import java.io.*;
 
-Board grid = new Board();
+Dictionary dictionary = new Dictionary();
+Board grid = new Board(dictionary);
 Player player1;
 //Player player2;
 tilePool tilePool;
-Dictionary dictionary = new Dictionary();
 boolean flag = true;
 Tile selectedTile;
 int counter = 0;
@@ -16,6 +16,7 @@ boolean win2 = false;
 //tile placed on another
 int time1;
 boolean tileWarning;
+boolean flags = false;
 
 int lastx = 0;
 int lasty = 0;
@@ -37,15 +38,15 @@ void setup() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
-  background(211,211,211);
+  background(211, 211, 211);
   initializeBoard();
   drawConfirmButton();
   drawWarnings();
   if (flag) {
-      drawRack(player1);
+    drawRack(player1);
   }
   //else{
-     //drawRack(player2);
+  //drawRack(player2);
   //}
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
@@ -59,7 +60,7 @@ void draw() {
 }
 
 
-//warns the user does something bad 
+//warns the user does something bad
 void drawWarnings() {
   if (tileWarning == false) {
     time1 = millis();
@@ -67,18 +68,18 @@ void drawWarnings() {
   if (millis() - time1 < interval && tileWarning == true) {
     System.out.println(millis());
     System.out.println(time1);
-  text("Warning: This spot already has a tile!", 250, 630);
+    text("Warning: This spot already has a tile!", 250, 630);
   }
   if (millis() - time1 >= interval) {
     tileWarning = false;
   }
-   if (tileWarning2 == false) {
+  if (tileWarning2 == false) {
     time2 = millis();
   }
   if (millis() - time2 < interval && tileWarning2 == true) {
     System.out.println(millis());
     System.out.println(time2);
-  text("Put the tile in the center spot!", 250, 630);
+    text("Put the tile in the center spot!", 250, 630);
   }
   if (millis() - time2 >= interval) {
     tileWarning2 = false;
@@ -90,7 +91,6 @@ void drawWarnings() {
 void initializePlayers() {
   player1 = new Player("Player 1");
   //player2 = new Player("Player 2");
-  dictionary = new Dictionary();
   tilePool = new tilePool();
   restockHand(player1);
   //restockHand(player2);
@@ -196,9 +196,7 @@ void mousePressed() {
   int xBoard = mouseX/ 40;
   int yBoard = mouseY/40;
   if (mouseY > 600 && selectedTile == null) {
-    //System.out.println( mouseX + ", " + mouseY);
     for (Tile tile : player1.getHand()) {
-      //System.out.println(tile.getX() + "," + tile.getY());
       if (tile.mouseOnTile(mouseX, mouseY) ) {
         selectedTile = tile;
         return;
@@ -210,34 +208,38 @@ void mousePressed() {
       if (turn == 0 && (xBoard != 7 || yBoard != 7) && player1.getHand().size() == 7) {
         System.out.println("time warning");
         tileWarning2 = true;
+      } else {
+        counter++;
+        lastx = xBoard;
+        lasty = yBoard;
+        flags = true;
+
+
+        grid.setTile(xBoard, yBoard, selectedTile);
+        grid.setStatus(xBoard, yBoard, true);
+        selectedTile.setLocation(xBoard * 40, yBoard * 40);
+        int tileIndex = player1.tileIndex(selectedTile);
+        //System.out.println(tileIndex);
+        if (tileIndex >= 0) {
+          player1.getHand().remove(tileIndex);
+        }
       }
-      else {
-      counter++;
-      System.out.println(counter);
-      grid.setTile(xBoard, yBoard, selectedTile);
-      grid.setStatus(xBoard, yBoard, true);
-      selectedTile.setLocation(xBoard * 40, yBoard * 40);
-      lastx = xBoard;
-      lasty = yBoard;
-      int tileIndex = player1.tileIndex(selectedTile);
-      //System.out.println(tileIndex);
-      if (tileIndex >= 0) {
-        player1.getHand().remove(tileIndex);
-      }
-    }
-    }
-    else {
+    } else {
       tileWarning = true;
     }
     selectedTile = null;
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
-    if (grid.wordle(lastx,lasty , counter)) {
-      int points = grid.additions(lastx,lasty , counter);
+    if (!flags) {
+      return;
+    }
+    if (grid.wordle(lastx, lasty, counter)) {
+      int points = grid.additions(lastx, lasty, counter);
       //System.out.println(points);
       player1.addScore(points);
       //System.out.println(player1.getScore());
       counter = 0;
+      flags = false;
     }
   }
 }
