@@ -231,26 +231,39 @@ void mousePressed() {
    // System.out.println(counter);
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
-    ArrayList<String> validWords = new ArrayList<>();
     boolean wordsValid = true;
     for (int[] tilePos : placedTiles) {
       String horoWord = grid.getHorizontalWord(tilePos[0], tilePos[1]);
+      System.out.println(horoWord);
       if (horoWord.length() > 1) {
         if (!dictionary.result(horoWord)) {
           wordsValid = false;
           break;
         }
-        validWords.add(horoWord);
       }
       String vertWord = grid.getVerticalWord(tilePos[0], tilePos[1]);
+      System.out.println(vertWord);
       if (vertWord.length() > 1) {
         if (!dictionary.result(vertWord)) {
           wordsValid = false;
           break;
         }
-        validWords.add(vertWord);
       }
     }
+    if (wordsValid) {
+      player1.addScore(10);
+      turn++;
+      restockHand(player1);
+    }
+    else {
+      for (int[] tilePos : placedTiles) {
+        Tile tile = grid.getBoard(tilePos[0], tilePos[1]);
+        player1.getHand().add(tile);
+        grid.setTile(tilePos[0], tilePos[1], null);
+      }
+    }
+    placedTiles.clear();
+  }
     /*
     ArrayList<int[]> recents = new ArrayList<int[]>();
     int size = placedTiles.size();
@@ -275,4 +288,5 @@ void mousePressed() {
     placedTiles.clear();
   }
   */
+}
 }
