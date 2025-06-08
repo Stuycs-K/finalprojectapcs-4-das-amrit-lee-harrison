@@ -22,7 +22,7 @@ class Dictionary {
     }
   }
   private void insertSort() {
-    for (int x = 1; x < possibilities.size(); x++) {
+    /*for (int x = 1; x < possibilities.size(); x++) {
       String imp = possibilities.get(x);
       int j = x - 1;
       while (j >=0 && possibilities.get(j).compareTo(imp)>0) {
@@ -31,6 +31,8 @@ class Dictionary {
       }
       possibilities.set(j+1, imp);
     }
+    */
+    Collections.sort(possibilities);
     sorted = true;
   }
 
@@ -38,6 +40,7 @@ class Dictionary {
     if(!sorted){
       insertSort();
     }
+    System.out.println(input);
     int lo = 0;
     int end = possibilities.size() - 1;
     while (lo <= end) {
@@ -46,7 +49,7 @@ class Dictionary {
         end = mid - 1;
       } else if (input.compareTo(possibilities.get(mid)) > 0) {
         lo = mid + 1;
-      } else {
+      } else if(input.compareTo(possibilities.get(mid)) == 0){
         return true;
       }
     }

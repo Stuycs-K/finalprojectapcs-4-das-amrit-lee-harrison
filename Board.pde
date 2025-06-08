@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 class Board {
-  Dictionary dictionary = new Dictionary();
+  Dictionary dictionary;
   public  Tile[][] board;
   public  int[][] lettermultipliers;
   public  int[][] wordmultipliers;
@@ -10,8 +10,8 @@ class Board {
   private ArrayList<Integer> temp1 = new ArrayList<Integer> ();
   private ArrayList<Integer> temp2 = new ArrayList<Integer>();
 
-  public Board() {
-    dictionary = new Dictionary();
+  public Board(Dictionary dict) {
+    dictionary = dict;
     board = new Tile[15][15];
     lettermultipliers = new int[15][15];
     wordmultipliers = new int[15][15];
@@ -96,40 +96,42 @@ class Board {
     lettering();
     wording();
   }
-
   public boolean wordlehor(ArrayList<int[]> placedTiles) {
     temp1.clear();
-    if(placedTiles.size() == 0){
+    if (placedTiles.size() == 0) {
       return false;
     }
     String word = "";
-    int cora = placedTiles.get(0)[1];
-    for(int x = placedTiles.size() - 1; x >= 0; x--){
-      int corb = placedTiles.get(x)[0];
-      
-      System.out.println("" + cora + corb);
-      System.out.println(board[cora][corb] == null);
-      if(board[cora][corb] != null){
-        word += board[cora][corb].getLetter();
+    int y = placedTiles.get(0)[1];  
+    for (int i = 0; i < placedTiles.size(); i++) {
+      int x = placedTiles.get(i)[0];
+      Tile tile = board[x][y];
+      if (tile != null) {
+        word += tile.getLetter();
       }
-      temp1.add(corb);
+      temp1.add(x);  
     }
-    System.out.println(word);
+    System.out.println("Word (hor): " + word);
+    System.out.println(dictionary.result(word));
     return dictionary.result(word);
   }
 
-  public boolean wordlever(ArrayList<int[]> placedTiles) {    
+  public boolean wordlever(ArrayList<int[]> placedTiles) {
     temp2.clear();
-    if(placedTiles.size() == 0){
+    if (placedTiles.size() == 0) {
       return false;
     }
     String word = "";
-    int corb = placedTiles.get(0)[1];
-    for(int x = placedTiles.size() - 1; x >= 0; x--){
-      int cora = placedTiles.get(x)[0];
-      word += board[cora][corb].getLetter();
-      temp2.add(corb);
+    int x = placedTiles.get(0)[0]; 
+    for (int i = 0; i < placedTiles.size(); i++) {
+      int y = placedTiles.get(i)[1];
+      Tile tile = board[x][y];
+      if (tile != null) {
+        word += tile.getLetter();
+      }
+      temp2.add(y);  
     }
+    System.out.println("Word (ver): " + word);
     return dictionary.result(word);
   }
   public int additions(ArrayList<int[]> placedTiles) {

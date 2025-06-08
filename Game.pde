@@ -3,7 +3,7 @@ import java.io.*;
 
 Dictionary dictionary = new Dictionary();
 ArrayList<int[]> placedTiles = new ArrayList<int[]> ();
-Board grid = new Board();
+Board grid = new Board(dictionary);
 Player player1;
 //Player player2;
 tilePool tilePool;
@@ -247,6 +247,7 @@ void mousePressed() {
     if (ver || hor) {
       int score = grid.additions(recents);
       player1.addScore(score);
+      restockHand(player1);
     }
     counter = 0;
     flags = false;
