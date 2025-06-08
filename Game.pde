@@ -58,6 +58,7 @@ void draw() {
     }
   }
   //System.out.println(player1.getScore());
+  textSize(30);
   text("" + player1.getScore(), 550, 750);
 }
 
@@ -68,8 +69,6 @@ void drawWarnings() {
     time1 = millis();
   }
   if (millis() - time1 < interval && tileWarning == true) {
-    System.out.println(millis());
-    System.out.println(time1);
     text("Warning: This spot already has a tile!", 250, 630);
   }
   if (millis() - time1 >= interval) {
@@ -79,8 +78,6 @@ void drawWarnings() {
     time2 = millis();
   }
   if (millis() - time2 < interval && tileWarning2 == true) {
-    System.out.println(millis());
-    System.out.println(time2);
     text("Put the tile in the center spot!", 250, 630);
   }
   if (millis() - time2 >= interval) {
@@ -234,6 +231,40 @@ void mousePressed() {
    // System.out.println(counter);
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
+    boolean wordsValid = true;
+    for (int[] tilePos : placedTiles) {
+      String horoWord = grid.getHorizontalWord(tilePos[0], tilePos[1]);
+      System.out.println(horoWord);
+      if (horoWord.length() > 1) {
+        if (!dictionary.result(horoWord)) {
+          wordsValid = false;
+          break;
+        }
+      }
+      String vertWord = grid.getVerticalWord(tilePos[0], tilePos[1]);
+      System.out.println(vertWord);
+      if (vertWord.length() > 1) {
+        if (!dictionary.result(vertWord)) {
+          wordsValid = false;
+          break;
+        }
+      }
+    }
+    if (wordsValid) {
+      player1.addScore(10);
+      turn++;
+      restockHand(player1);
+    }
+    else {
+      for (int[] tilePos : placedTiles) {
+        Tile tile = grid.getBoard(tilePos[0], tilePos[1]);
+        player1.getHand().add(tile);
+        grid.setTile(tilePos[0], tilePos[1], null);
+      }
+    }
+    placedTiles.clear();
+  }
+    /*
     ArrayList<int[]> recents = new ArrayList<int[]>();
     int size = placedTiles.size();
     for (int i = size - counter; i < size; i++) {
@@ -241,17 +272,25 @@ void mousePressed() {
     }
     System.out.println("confirm button");
     boolean hor = grid.wordlehor(recents);
-    System.out.println(hor);
+    System.out.println(hor); 
     boolean ver = grid.wordlever(recents);
     System.out.println(ver);
     if (ver || hor) {
+      turn++;
       int score = grid.additions(recents);
       player1.addScore(score);
       restockHand(player1);
+<<<<<<< HEAD
+      recents.removeAll(recents);
+           System.out.println("Grah:" + recents.toString());
+=======
       turn++;
+>>>>>>> 8edf0b813614639c42544da158694a0bb4a468f7
     }
     counter = 0;
     flags = false;
     placedTiles.clear();
   }
+  */
+}
 }
