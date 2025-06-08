@@ -3,7 +3,7 @@ import java.io.*;
 
 Dictionary dictionary = new Dictionary();
 ArrayList<int[]> placedTiles = new ArrayList<int[]> ();
-Board grid = new Board(dictionary);
+Board grid = new Board();
 Player player1;
 //Player player2;
 tilePool tilePool;
@@ -195,11 +195,11 @@ void drawRack() {
 }
 
 void mousePressed() {
-  System.out.println("mousePressed called. MouseX: " + mouseX + " " + mouseY);
+  //System.out.println("mousePressed called. MouseX: " + mouseX + " " + mouseY);
   int xBoard = mouseX/ 40;
   int yBoard = mouseY/40;
   if (mouseY > 690 && selectedTile == null) {
-    System.out.println("selecting tile");
+    //System.out.println("selecting tile");
     for (Tile tile : player1.getHand()) {
       if (tile.mouseOnTile(mouseX, mouseY) ) {
         selectedTile = tile;
@@ -208,44 +208,45 @@ void mousePressed() {
     }
   }
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
-    System.out.println("placing  tile");
+    //System.out.println("placing  tile");
     if (grid.getBoard(xBoard, yBoard) == null) {
       if (turn == 0 && (xBoard != 7 || yBoard != 7) && player1.getHand().size() == 7) {
         System.out.println("time warning");
         tileWarning2 = true;
       } else {
-        counter++;
-        lastx = xBoard;
-        lasty = yBoard;
         flags = true;
-
-
         grid.setTile(xBoard, yBoard, selectedTile);
         grid.setStatus(xBoard, yBoard, true);
         selectedTile.setLocation(xBoard * 40, yBoard * 40);
         placedTiles.add(new int[] {xBoard, yBoard});
+        counter++;
         int tileIndex = player1.tileIndex(selectedTile);
         //System.out.println(tileIndex);
         if (tileIndex >= 0) {
           player1.getHand().remove(tileIndex);
         }
-        System.out.println("tile placed successfully");
+        //System.out.println("tile placed successfully");
       }
     } else {
       tileWarning = true;
     }
     selectedTile = null;
+   // System.out.println(counter);
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
+    ArrayList<int[]> recents = new ArrayList<int[]>();
+    int size = placedTiles.size();
+    for (int i = size - counter; i < size; i++) {
+      recents.add(placedTiles.get(i));
+    }
     System.out.println("confirm button");
-    boolean valid = grid.wordle(placedTiles);
-    System.out.println(valid);
-    if(valid){
-      int points = grid.additions(placedTiles);
-      System.out.println(points);
-      player1.addScore(points);
-      System.out.println(player1.getScore());
-      restockHand(player1);
+    boolean hor = grid.wordlehor(recents);
+    System.out.println(hor);
+    boolean ver = grid.wordlever(recents);
+    System.out.println(ver);
+    if (ver || hor) {
+      int score = grid.additions(recents);
+      player1.addScore(score);
     }
     counter = 0;
     flags = false;
