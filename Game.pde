@@ -280,8 +280,12 @@ void mousePressed() {
       int score = grid.additions(recents);
       player1.addScore(score);
       restockHand(player1);
+<<<<<<< HEAD
       recents.removeAll(recents);
            System.out.println("Grah:" + recents.toString());
+=======
+      turn++;
+>>>>>>> 8edf0b813614639c42544da158694a0bb4a468f7
     }
     counter = 0;
     flags = false;
