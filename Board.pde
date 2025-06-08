@@ -186,4 +186,20 @@ class Board {
     System.out.println("Score calculated: " + total);
     return total;
   }
+  
+  public String getHorizontalWord(int x, int y) {
+    int beginning = x;
+    int ending = x;
+    String returnStr = "";
+    while (beginning >= 0 && board[x][y] != null) {
+      beginning--;
+    }
+    while (ending <= 14 && board[x][y] != null) {
+      ending++;
+    }
+    for (int i = beginning; i < ending; i++) {
+      returnStr += board[i][y].getLetter();
+    }
+    return returnStr;
+}
 }
