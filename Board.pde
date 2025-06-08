@@ -1,3 +1,4 @@
+
 import java.util.*;
 import java.io.*;
 
@@ -217,7 +218,6 @@ class Board {
     System.out.println("Score calculated: " + total);
     return total;
   }
-  
   public String getHorizontalWord(int x, int y) {
     int beginning = x;
     int ending = x;

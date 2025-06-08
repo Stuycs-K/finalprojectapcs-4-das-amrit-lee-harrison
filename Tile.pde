@@ -1,4 +1,4 @@
- class Tile{
+public class Tile{
     private char letter;
     private int letterValue;
     float x,y;
