@@ -97,54 +97,68 @@ class Board {
     wording();
   }
 
-  public boolean wordlehor(ArrayList<int[]> placedTiles) {
-    temp1.clear();
-    if (placedTiles.size() == 0) return false;
-
-    int row = placedTiles.get(0)[1];
-    for (int[] pos : placedTiles) {
-      if (pos[1] != row) return false;
-    }
-
-    placedTiles.sort((a, b) -> Integer.compare(a[0], b[0]));
-
-    String word = "";
-    for (int[] pos : placedTiles) {
-      int x = pos[0];
-      int y = pos[1];
-      Tile tile = board[x][y];
-      if (tile == null) return false;
-      word += tile.getLetter();
-      temp1.add(x);
-    }
-
-    return dictionary.result(word);
+public boolean wordlehor(ArrayList<int[]> placedTiles) {
+  temp1.clear();
+  if (placedTiles.size() == 0) {
+    return false;
   }
-  public boolean wordlever(ArrayList<int[]> placedTiles) {
-    temp2.clear();
-    if (placedTiles.size() == 0) return false;
 
-    int col = placedTiles.get(0)[0];
-    for (int[] pos : placedTiles) {
-      if (pos[0] != col) return false; // not vertical
+  int row = placedTiles.get(0)[1];
+  for (int i = 0; i < placedTiles.size(); i++) {
+    int[] pos = placedTiles.get(i);
+    if (pos[1] != row) {
+      return false;
     }
-
-    // Sort by y (vertical)
-    placedTiles.sort((a, b) -> Integer.compare(a[1], b[1]));
-
-    String word = "";
-    for (int[] pos : placedTiles) {
-      int x = pos[0];
-      int y = pos[1];
-      Tile tile = board[x][y];
-      if (tile == null) return false;
-      word += tile.getLetter();
-      temp2.add(y);
-    }
-
-    System.out.println("Vertical word: " + word);
-    return dictionary.result(word);
   }
+
+  // Optionally check continuity here if needed (see below)
+
+  String word = "";
+  for (int i = 0; i < placedTiles.size(); i++) {
+    int[] pos = placedTiles.get(i);
+    int x = pos[0];
+    int y = pos[1];
+    Tile tile = board[x][y];
+    if (tile == null) {
+      return false;
+    }
+    word += tile.getLetter();
+    temp1.add(x);
+  }
+
+  return dictionary.result(word);
+}
+
+public boolean wordlever(ArrayList<int[]> placedTiles) {
+  temp2.clear();
+  if (placedTiles.size() == 0) {
+    return false;
+  }
+
+  int col = placedTiles.get(0)[0];
+  for (int i = 0; i < placedTiles.size(); i++) {
+    int[] pos = placedTiles.get(i);
+    if (pos[0] != col) {
+      return false;
+    }
+  }
+
+  String word = "";
+  for (int i = 0; i < placedTiles.size(); i++) {
+    int[] pos = placedTiles.get(i);
+    int x = pos[0];
+    int y = pos[1];
+    Tile tile = board[x][y];
+    if (tile == null) {
+      return false;
+    }
+    word += tile.getLetter();
+    temp2.add(y);
+  }
+
+  System.out.println("Vertical word: " + word);
+  return dictionary.result(word);
+}
   public boolean wordle(ArrayList<int[]> placedTiles) {
     boolean hor = wordlehor(placedTiles);
     boolean ver = wordlever(placedTiles);
