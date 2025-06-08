@@ -248,6 +248,7 @@ void mousePressed() {
       int score = grid.additions(recents);
       player1.addScore(score);
       restockHand(player1);
+      turn++;
     }
     counter = 0;
     flags = false;
