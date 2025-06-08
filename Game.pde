@@ -2,6 +2,7 @@ import java.util.*;
 import java.io.*;
 
 Dictionary dictionary = new Dictionary();
+ArrayList<int[]> placedTiles = new ArrayList<int[]> ();
 Board grid = new Board(dictionary);
 Player player1;
 //Player player2;
@@ -56,6 +57,7 @@ void draw() {
       }
     }
   }
+  //System.out.println(player1.getScore());
   text("" + player1.getScore(), 550, 750);
 }
 
@@ -193,9 +195,11 @@ void drawRack() {
 }
 
 void mousePressed() {
+  System.out.println("mousePressed called. MouseX: " + mouseX + " " + mouseY);
   int xBoard = mouseX/ 40;
   int yBoard = mouseY/40;
-  if (mouseY > 600 && selectedTile == null) {
+  if (mouseY > 690 && selectedTile == null) {
+    System.out.println("selecting tile");
     for (Tile tile : player1.getHand()) {
       if (tile.mouseOnTile(mouseX, mouseY) ) {
         selectedTile = tile;
@@ -204,6 +208,7 @@ void mousePressed() {
     }
   }
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
+    System.out.println("placing  tile");
     if (grid.getBoard(xBoard, yBoard) == null) {
       if (turn == 0 && (xBoard != 7 || yBoard != 7) && player1.getHand().size() == 7) {
         System.out.println("time warning");
@@ -218,11 +223,13 @@ void mousePressed() {
         grid.setTile(xBoard, yBoard, selectedTile);
         grid.setStatus(xBoard, yBoard, true);
         selectedTile.setLocation(xBoard * 40, yBoard * 40);
+        placedTiles.add(new int[] {xBoard, yBoard});
         int tileIndex = player1.tileIndex(selectedTile);
         //System.out.println(tileIndex);
         if (tileIndex >= 0) {
           player1.getHand().remove(tileIndex);
         }
+        System.out.println("tile placed successfully");
       }
     } else {
       tileWarning = true;
@@ -230,16 +237,18 @@ void mousePressed() {
     selectedTile = null;
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
-    if (!flags) {
-      return;
-    }
-    if (grid.wordle(lastx, lasty, counter)) {
-      int points = grid.additions(lastx, lasty, counter);
-      //System.out.println(points);
+    System.out.println("confirm button");
+    boolean valid = grid.wordle(placedTiles);
+    System.out.println(valid);
+    if(valid){
+      int points = grid.additions(placedTiles);
+      System.out.println(points);
       player1.addScore(points);
-      //System.out.println(player1.getScore());
-      counter = 0;
-      flags = false;
+      System.out.println(player1.getScore());
+      restockHand(player1);
     }
+    counter = 0;
+    flags = false;
+    placedTiles.clear();
   }
 }

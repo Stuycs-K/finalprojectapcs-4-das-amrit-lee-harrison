@@ -97,85 +97,114 @@ class Board {
     wording();
   }
 
-  public boolean wordlehor(int x, int y, int counts) {
+  public boolean wordlehor(ArrayList<int[]> placedTiles) {
     temp1.clear();
+    if (placedTiles.size() == 0) return false;
+
+    int row = placedTiles.get(0)[1];
+    for (int[] pos : placedTiles) {
+      if (pos[1] != row) return false;
+    }
+
+    placedTiles.sort((a, b) -> Integer.compare(a[0], b[0]));
+
     String word = "";
-    while (counts >= 0) {
-      if (board[x - counts][y] != null) {
-        word += board[x - counts][y].getLetter();
-      }
-      temp1.add(x - counts); 
-      counts--;
+    for (int[] pos : placedTiles) {
+      int x = pos[0];
+      int y = pos[1];
+      Tile tile = board[x][y];
+      if (tile == null) return false;
+      word += tile.getLetter();
+      temp1.add(x);
+    }
 
-      System.out.println(temp1.toString());
-      System.out.println(word);
-    }
-    if (dictionary.result(word)) {
-      return true;
-    }
-    return false;
+    return dictionary.result(word);
   }
-
-  public boolean wordlever(int x, int y, int counts) {
+  public boolean wordlever(ArrayList<int[]> placedTiles) {
     temp2.clear();
+    if (placedTiles.size() == 0) return false;
+
+    int col = placedTiles.get(0)[0];
+    for (int[] pos : placedTiles) {
+      if (pos[0] != col) return false; // not vertical
+    }
+
+    // Sort by y (vertical)
+    placedTiles.sort((a, b) -> Integer.compare(a[1], b[1]));
+
     String word = "";
-    while (counts >= 0) {
-      if (board[x][y - counts] != null) {
-        word += board[x][y - counts].getLetter();
-      }
-      temp2.add(y - counts);  // <-- add before decrement
-      counts--;
+    for (int[] pos : placedTiles) {
+      int x = pos[0];
+      int y = pos[1];
+      Tile tile = board[x][y];
+      if (tile == null) return false;
+      word += tile.getLetter();
+      temp2.add(y);
     }
-    if (dictionary.result(word)) {
-      return true;
-    }
-    return false;
-  }
 
-  public boolean wordle(int x, int y, int counts) {
-    if (wordlehor(x, y, counts) || wordlever(x, y, counts)) {
-      return true;
-    }
-    return false;
+    System.out.println("Vertical word: " + word);
+    return dictionary.result(word);
   }
-
-  public int additions(int x, int y, int counts) {
+  public boolean wordle(ArrayList<int[]> placedTiles) {
+    boolean hor = wordlehor(placedTiles);
+    boolean ver = wordlever(placedTiles);
+    System.out.println("Is horizontal word valid? " + hor);
+    System.out.println("Is vertical word valid? " + ver);
+    return hor || ver;
+  }
+  public int additions(ArrayList<int[]> placedTiles) {
     int retu = 0;
     int mult = 1;
-    if (!wordle(x, y, counts)) {
+
+    boolean hor = wordlehor(placedTiles);
+    boolean ver = wordlever(placedTiles);
+
+    if (!hor && !ver) {
       return 0;
     }
-    if (wordlehor(x, y, counts)) {
-      for (int k = 0; k < temp1.size(); k++) {
-        int xo = temp1.get(k);
-        Tile tile = board[xo][y];
-        int lmulti;
-        if (lettermultipliers[xo][y] > 0) {
-          lmulti = lettermultipliers[xo][y];
-        } else {
-          lmulti = 1;
+
+    if (hor) {
+      int y = placedTiles.get(0)[1];
+      for (int x : temp1) {
+        Tile tile = board[x][y];
+        if (tile == null) {
+          continue;
         }
+
+        int lmulti = 1;
+        if (lettermultipliers[x][y] > 0) {
+          lmulti = lettermultipliers[x][y];
+        }
+
         retu += tile.getValue() * lmulti;
-        if (wordmultipliers[xo][y] > 0) {
-          mult *= wordmultipliers[xo][y];
+
+        if (wordmultipliers[x][y] > 0) {
+          mult *= wordmultipliers[x][y];
         }
       }
-    } else if (wordlever(x, y, counts)) {
-      for (int k = 0; k < temp2.size(); k++) {
-        int yo = temp2.get(k);
-        Tile tile = board[x][yo];
-        int letmulti;
-        if (lettermultipliers[x][yo] > 0) {
-          letmulti = lettermultipliers[x][yo];
-        } else {
-          letmulti = 1;
+    } else if (ver) {
+      int x = placedTiles.get(0)[0];
+      for (int y : temp2) {
+        Tile tile = board[x][y];
+        if (tile == null) {
+          continue;
         }
-        retu += tile.getValue() * letmulti;
-        if (wordmultipliers[x][yo] > 0) {
-          mult *= wordmultipliers[x][yo];
+
+        int lmulti = 1;
+        if (lettermultipliers[x][y] > 0) {
+          lmulti = lettermultipliers[x][y];
+        }
+
+        retu += tile.getValue() * lmulti;
+
+        if (wordmultipliers[x][y] > 0) {
+          mult *= wordmultipliers[x][y];
         }
       }
     }
-    return retu * mult;
+
+    int total = retu * mult;
+    System.out.println("Score calculated: " + total);
+    return total;
   }
 }
