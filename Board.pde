@@ -191,14 +191,30 @@ class Board {
     int beginning = x;
     int ending = x;
     String returnStr = "";
-    while (beginning >= 0 && board[x][y] != null) {
+    while (beginning >= 0 && board[beginning][y] != null) {
       beginning--;
     }
-    while (ending <= 14 && board[x][y] != null) {
+    while (ending <= 14 && board[ending][y] != null) {
       ending++;
     }
     for (int i = beginning; i < ending; i++) {
       returnStr += board[i][y].getLetter();
+    }
+    return returnStr;
+}
+
+ public String getVerticalWord(int x, int y) {
+    int beginning = y;
+    int ending = y;
+    String returnStr = "";
+    while (beginning >= 0 && board[x][beginning] != null) {
+      beginning--;
+    }
+    while (ending <= 14 && board[x][ending] != null) {
+      ending++;
+    }
+    for (int i = beginning; i < ending; i++) {
+      returnStr += board[x][i].getLetter();
     }
     return returnStr;
 }

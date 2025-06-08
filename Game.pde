@@ -231,6 +231,18 @@ void mousePressed() {
    // System.out.println(counter);
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
+    boolean wordsValid = true;
+    for (int[] tilePos : placedTiles) {
+      String horoWord = grid.getHorizontalWord(tilePos[0], tilePos[1]);
+      if (horoWord.length() > 1) {
+        if (!dictionary.result(horoWord)) {
+          wordsValid = false;
+          break;
+        }
+      }
+      String vertWord = grid.getVerticalWord(tilePos[0], tilePos[1]);
+    }
+    /*
     ArrayList<int[]> recents = new ArrayList<int[]>();
     int size = placedTiles.size();
     for (int i = size - counter; i < size; i++) {
@@ -238,7 +250,7 @@ void mousePressed() {
     }
     System.out.println("confirm button");
     boolean hor = grid.wordlehor(recents);
-    System.out.println(hor);
+    System.out.println(hor); 
     boolean ver = grid.wordlever(recents);
     System.out.println(ver);
     if (ver || hor) {
@@ -253,4 +265,5 @@ void mousePressed() {
     flags = false;
     placedTiles.clear();
   }
+  */
 }
