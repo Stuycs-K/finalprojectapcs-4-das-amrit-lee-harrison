@@ -45,7 +45,7 @@
       textAlign(CENTER, CENTER);
       text(letter, x+20, y+20);
       textSize(13);
-      text(letterValue, x+30, y+30);
+      text(letterValue, x+34, y+34);
     }
     
     void setLocation(float x, float y) {

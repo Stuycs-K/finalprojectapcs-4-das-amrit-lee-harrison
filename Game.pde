@@ -58,6 +58,7 @@ void draw() {
     }
   }
   //System.out.println(player1.getScore());
+  textSize(30);
   text("" + player1.getScore(), 550, 750);
 }
 
@@ -68,8 +69,6 @@ void drawWarnings() {
     time1 = millis();
   }
   if (millis() - time1 < interval && tileWarning == true) {
-    System.out.println(millis());
-    System.out.println(time1);
     text("Warning: This spot already has a tile!", 250, 630);
   }
   if (millis() - time1 >= interval) {
@@ -79,8 +78,6 @@ void drawWarnings() {
     time2 = millis();
   }
   if (millis() - time2 < interval && tileWarning2 == true) {
-    System.out.println(millis());
-    System.out.println(time2);
     text("Put the tile in the center spot!", 250, 630);
   }
   if (millis() - time2 >= interval) {
@@ -245,9 +242,12 @@ void mousePressed() {
     boolean ver = grid.wordlever(recents);
     System.out.println(ver);
     if (ver || hor) {
+      turn++;
       int score = grid.additions(recents);
       player1.addScore(score);
       restockHand(player1);
+      recents.removeAll(recents);
+           System.out.println("Grah:" + recents.toString());
     }
     counter = 0;
     flags = false;
