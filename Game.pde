@@ -237,18 +237,18 @@ void mousePressed() {
       recents.add(placedTiles.get(i));
     }
     boolean hor = grid.wordlehor(recents);
-    System.out.println("hor:" +hor);
+    //System.out.println("hor:" +hor);
     boolean ver = grid.wordlever(recents);
-    System.out.println("veer:" + ver);
+    //System.out.println("veer:" + ver);
     if (ver || hor) {
       for (int[] pos : recents) {
-        System.out.println("Verify: " + pos[0] + ", " + pos[1]);
+        //System.out.println("Verify: " + pos[0] + ", " + pos[1]);
       }
       isVer = ver;
       int score = grid.additions(recents);
       currentPlayer.addScore(score);
       score = 0;
-      System.out.println(score);
+      //System.out.println(score);
       restockHand(currentPlayer);
       recents.removeAll(recents);
       turn++;

@@ -114,7 +114,7 @@ class Board {
       temp1.add(x);
       x++;
     }
-    System.out.println("Word(hor): " + word);
+    //System.out.println("Word(hor): " + word);
     return dictionary.result(word);
   }
 
@@ -135,7 +135,7 @@ class Board {
       temp2.add(y);
       y++;
     }
-    System.out.println("Word(ver): " + word);
+    //System.out.println("Word(ver): " + word);
     return dictionary.result(word);
   }
   public int additions(ArrayList<int[]> placedTiles) {
@@ -169,7 +169,7 @@ class Board {
             }
           }
           retu+= tile.getValue() * lettermult;
-          System.out.println(tile.getValue());
+          //System.out.println(tile.getValue());
         }
 
 
@@ -216,7 +216,7 @@ class Board {
     }
 
     int total = retu * mult;
-    System.out.println("Score calculated: " + total);
+    //System.out.println("Score calculated: " + total);
     return total;
   }
   public String getHorizontalWord(int x, int y) {
