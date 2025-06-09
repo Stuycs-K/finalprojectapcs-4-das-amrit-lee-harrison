@@ -20,6 +20,8 @@ boolean win2 = false;
 int time1;
 boolean tileWarning;
 boolean flags = false;
+ArrayList<Tile> pendingTiles = new ArrayList<Tile>();
+ArrayList<float[]> pendingTilesLocation = new ArrayList<float[]>();
 
 int lastx = 0;
 int lasty = 0;
@@ -56,7 +58,8 @@ void draw() {
     }
   }
      textSize(30);
-      text("" + currentPlayer.getScore(), 550, 750);
+     text("" + player1.getScore(), 550, 720);
+     text("" + player2.getScore(), 550, 775);
 
 }
 
@@ -127,25 +130,26 @@ void initializeBoard() {
   }
   noFill();
   //Multiplier key
-  rect(490, 600, 120, 120);
+  rect(490, 600, 120, 140);
   fill(0, 191, 255);
-  rect(500, 610, 15, 15);
-  textSize(15);
-  text("Double Letter", 560, 620);
+  rect(500, 605, 10, 10);
+  textSize(10);
+  text("Double Letter", 550, 610);
   fill(0, 128, 255);
-  rect(500, 635, 15, 15);
-  text("Triple Letter", 560, 645);
+  rect(500, 625, 10, 10);
+  text("Triple Letter", 550, 630);
   fill(255, 120, 0);
-  rect(500, 660, 15, 15);
-  text("Double Word", 560, 670);
+  rect(500, 645, 10, 10);
+  text("Double Word", 550, 650);
   fill(255, 0, 0);
-  rect(500, 690, 15, 15);
-  text("Triple Word", 560, 700);
+  rect(500, 665, 10, 10);
+  text("Triple Word", 550, 670);
   //Score's of players
   noFill();
-  rect(490, 720, 120, 120);
+  rect(490, 680, 120, 120);
   //line(490, 760, 600, 760);
-  text(currentPlayer.getName() + "score", 550, 730);
+  text("Player 1 Score", 550, 690);
+  text("Player 2 Score", 550, 750);
 }
 
 
@@ -188,6 +192,20 @@ void drawConfirmButton() {
   //function to check dictionary
 }
 
+void undoMove() {
+  if (pendingTiles.size() > 0) {
+    for (int i = 0; i < pendingTiles.size(); i++) {
+      int x = (int) (pendingTiles.get(i).getX()/40);
+      int y = (int) (pendingTiles.get(i).getY()/40);
+      grid.setTile(x, y, null);
+      currentPlayer.getHand().add(pendingTiles.get(i));
+      pendingTiles.get(i).setLocation(pendingTilesLocation.get(i)[0], pendingTilesLocation.get(i)[1]);
+    }
+  }
+  pendingTiles.clear();
+  pendingTilesLocation.clear();
+}
+
 void mousePressed() {
   //System.out.println("mousePressed called. MouseX: " + mouseX + " " + mouseY);
   int xBoard = mouseX/ 40;
@@ -209,10 +227,13 @@ void mousePressed() {
         tileWarning2 = true;
       } else {
         flags = true;
+           float[] array = {selectedTile.getX(), selectedTile.getY()};
+        pendingTilesLocation.add(array);
         grid.setTile(xBoard, yBoard, selectedTile);
         grid.setStatus(xBoard, yBoard, true);
         selectedTile.setLocation(xBoard * 40, yBoard * 40);
         placedTiles.add(new int[] {xBoard, yBoard});
+        pendingTiles.add(selectedTile);
         counter++;
         int tileIndex = currentPlayer.tileIndex(selectedTile);
         //System.out.println(tileIndex);
@@ -235,21 +256,23 @@ void mousePressed() {
       recents.add(placedTiles.get(i));
     }
     boolean hor = grid.wordlehor(recents);
-    System.out.println("hor:" +hor);
+    //System.out.println("hor:" +hor);
     boolean ver = grid.wordlever(recents);
-    System.out.println("veer:" + ver);
+    //System.out.println("veer:" + ver);
     if (ver || hor) {
       for (int[] pos : recents) {
-        System.out.println("Verify: " + pos[0] + ", " + pos[1]);
+        //System.out.println("Verify: " + pos[0] + ", " + pos[1]);
       }
       isVer = ver;
       int score = grid.additions(recents);
       currentPlayer.addScore(score);
-      System.out.println(score);
+      score = 0;
+      //System.out.println(score);
       restockHand(currentPlayer);
       recents.removeAll(recents);
       turn++;
-      score = 0;
+      pendingTilesLocation.clear();
+      pendingTiles.clear();
       if (currentPlayer == player1) {
         currentPlayer = player2;
       }
@@ -257,6 +280,9 @@ void mousePressed() {
         currentPlayer = player1;
       }
 
+    }
+    else {
+      undoMove();
     }
     counter = 0;
     flags = false;
