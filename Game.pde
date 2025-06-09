@@ -20,6 +20,7 @@ boolean win2 = false;
 int time1;
 boolean tileWarning;
 boolean flags = false;
+ArrayList<Tile> pendingTiles = new ArrayList<Tile>();
 
 int lastx = 0;
 int lasty = 0;
@@ -259,6 +260,9 @@ void mousePressed() {
         currentPlayer = player1;
       }
 
+    }
+    else {
+      
     }
     counter = 0;
     flags = false;
