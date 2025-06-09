@@ -20,6 +20,8 @@ boolean win2 = false;
 int time1;
 boolean tileWarning;
 boolean flags = false;
+ArrayList<Tile> pendingTiles = new ArrayList<Tile>();
+ArrayList<float[]> pendingTilesLocation = new ArrayList<float[]>();
 
 int lastx = 0;
 int lasty = 0;
@@ -190,6 +192,20 @@ void drawConfirmButton() {
   //function to check dictionary
 }
 
+void undoMove() {
+  if (pendingTiles.size() > 0) {
+    for (int i = 0; i < pendingTiles.size(); i++) {
+      int x = (int) (pendingTiles.get(i).getX()/40);
+      int y = (int) (pendingTiles.get(i).getY()/40);
+      grid.setTile(x, y, null);
+      currentPlayer.getHand().add(pendingTiles.get(i));
+      pendingTiles.get(i).setLocation(pendingTilesLocation.get(i)[0], pendingTilesLocation.get(i)[1]);
+    }
+  }
+  pendingTiles.clear();
+  pendingTilesLocation.clear();
+}
+
 void mousePressed() {
   //System.out.println("mousePressed called. MouseX: " + mouseX + " " + mouseY);
   int xBoard = mouseX/ 40;
@@ -211,10 +227,13 @@ void mousePressed() {
         tileWarning2 = true;
       } else {
         flags = true;
+           float[] array = {selectedTile.getX(), selectedTile.getY()};
+        pendingTilesLocation.add(array);
         grid.setTile(xBoard, yBoard, selectedTile);
         grid.setStatus(xBoard, yBoard, true);
         selectedTile.setLocation(xBoard * 40, yBoard * 40);
         placedTiles.add(new int[] {xBoard, yBoard});
+        pendingTiles.add(selectedTile);
         counter++;
         int tileIndex = currentPlayer.tileIndex(selectedTile);
         //System.out.println(tileIndex);
@@ -252,6 +271,8 @@ void mousePressed() {
       restockHand(currentPlayer);
       recents.removeAll(recents);
       turn++;
+      pendingTilesLocation.clear();
+      pendingTiles.clear();
       if (currentPlayer == player1) {
         currentPlayer = player2;
       }
@@ -259,6 +280,9 @@ void mousePressed() {
         currentPlayer = player1;
       }
 
+    }
+    else {
+      undoMove();
     }
     counter = 0;
     flags = false;
