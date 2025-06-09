@@ -34,23 +34,19 @@ int tileSize = 40;
 //SETUP
 void setup() {
   size(600, 800);
+    initializePlayers();
   initializeBoard();
-  initializePlayers();
   dictionary.reader("Dict.txt");
 }
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
+  System.out.println(flag);
   background(211, 211, 211);
   initializeBoard();
   drawConfirmButton();
   drawWarnings();
-  if (flag) {
-    drawRack(player1);
-  }
-  else{
-  drawRack(player2);
-  }
+  drawRack(currentPlayer);
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -59,9 +55,9 @@ void draw() {
       }
     }
   }
-  //System.out.println(player1.getScore());
-  textSize(30);
-  text("" + player1.getScore(), 550, 750);
+     textSize(30);
+      text("" + currentPlayer.getScore(), 550, 750);
+
 }
 
 
@@ -99,6 +95,7 @@ void initializePlayers() {
   tilePool = new tilePool();
   restockHand(player1);
   restockHand(player2);
+  currentPlayer = player1;
 }
 
 void endTurn() {
@@ -148,7 +145,7 @@ void initializeBoard() {
   noFill();
   rect(490, 720, 120, 120);
   //line(490, 760, 600, 760);
-  text("Player 1 Score", 550, 730);
+  text(currentPlayer.getName() + "score", 550, 730);
 }
 
 
@@ -177,7 +174,7 @@ void drawRack(Player player) {
   int increment = 20;
   textSize(10);
   text(player.getName(), 30, 650);
-  for (Tile t : player1.getHand()) {
+  for (Tile t : player.getHand()) {
     t.display();
     increment+=50;
   }
@@ -190,13 +187,6 @@ void drawConfirmButton() {
   text("Confirm Word", 430, 670);
   //function to check dictionary
 }
-void drawRack() {
-  textSize(20);
-  text("Player 1", 30, 620);
-  for (Tile t : player1.getHand()) {
-    t.display();
-  }
-}
 
 void mousePressed() {
   //System.out.println("mousePressed called. MouseX: " + mouseX + " " + mouseY);
@@ -204,7 +194,7 @@ void mousePressed() {
   int yBoard = mouseY/40;
   if (mouseY > 690 && selectedTile == null) {
     //System.out.println("selecting tile");
-    for (Tile tile : player1.getHand()) {
+    for (Tile tile : currentPlayer.getHand()) {
       if (tile.mouseOnTile(mouseX, mouseY) ) {
         selectedTile = tile;
         return;
@@ -214,7 +204,7 @@ void mousePressed() {
   if (selectedTile != null && xBoard >= 0 && xBoard < 15 && yBoard >= 0 && yBoard < 15) {
     //System.out.println("placing  tile");
     if (grid.getBoard(xBoard, yBoard) == null) {
-      if (turn == 0 && (xBoard != 7 || yBoard != 7) && player1.getHand().size() == 7) {
+      if (turn == 0 && (xBoard != 7 || yBoard != 7) && currentPlayer.getHand().size() == 7) {
         System.out.println("time warning");
         tileWarning2 = true;
       } else {
@@ -224,10 +214,10 @@ void mousePressed() {
         selectedTile.setLocation(xBoard * 40, yBoard * 40);
         placedTiles.add(new int[] {xBoard, yBoard});
         counter++;
-        int tileIndex = player1.tileIndex(selectedTile);
+        int tileIndex = currentPlayer.tileIndex(selectedTile);
         //System.out.println(tileIndex);
         if (tileIndex >= 0) {
-          player1.getHand().remove(tileIndex);
+          currentPlayer.getHand().remove(tileIndex);
         }
         //System.out.println("tile placed successfully");
       }
@@ -254,13 +244,19 @@ void mousePressed() {
       }
       isVer = ver;
       int score = grid.additions(recents);
-      player1.addScore(score);
+      currentPlayer.addScore(score);
       System.out.println(score);
-      restockHand(player1);
+      restockHand(currentPlayer);
       recents.removeAll(recents);
       turn++;
       score = 0;
-      flag = !flag;
+      if (currentPlayer == player1) {
+        currentPlayer = player2;
+      }
+      else {
+        currentPlayer = player1;
+      }
+
     }
     counter = 0;
     flags = false;
