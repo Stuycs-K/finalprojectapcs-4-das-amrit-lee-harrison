@@ -22,6 +22,9 @@ Old UML:
 UPDATED UML:
 ![image](https://github.com/user-attachments/assets/34ecaef7-f8b5-40c8-9e6d-fea6416e87e4)
 
+Updated UML:
+![image](https://github.com/user-attachments/assets/a7fd8393-36b0-44d8-896c-4dea65e558f6)
+
 
 
 
