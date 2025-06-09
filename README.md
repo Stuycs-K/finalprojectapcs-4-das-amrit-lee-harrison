@@ -21,4 +21,12 @@ Once the drawing is intitialised in Processing, you can start playing the game a
 
 
 The amount to win is **35 points**
+
+# Accessible Video Link(YouTube): 
+
+https://youtu.be/LjNdMbuNwzE
+
+- You can also find this video in the git repository. It is too big at to this ReadME.
+
+
   
