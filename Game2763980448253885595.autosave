@@ -59,7 +59,6 @@ void draw() {
     }
   }
   //System.out.println(player1.getScore());
-  textSize(30);
   text("" + player1.getScore(), 550, 750);
 }
 
@@ -236,35 +235,24 @@ void mousePressed() {
    // System.out.println(counter);
   }
   if ((mouseX >= 380 && mouseX <= 480) && (mouseY >= 650 & mouseY <= 690)) {
-    boolean isVer;
     ArrayList<int[]> recents = new ArrayList<int[]>();
     int size = placedTiles.size();
     for (int i = size - counter; i < size; i++) {
       recents.add(placedTiles.get(i));
     }
+    System.out.println("confirm button");
     boolean hor = grid.wordlehor(recents);
-    System.out.println("hor:" +hor);
+    System.out.println(hor);
     boolean ver = grid.wordlever(recents);
-    System.out.println("veer:" + ver);
+    System.out.println(ver);
     if (ver || hor) {
-      for (int[] pos : recents) {
-        System.out.println("Verify: " + pos[0] + ", " + pos[1]);
-      }
-      isVer = ver;
       int score = grid.additions(recents);
       player1.addScore(score);
-      System.out.println(score);
       restockHand(player1);
-      recents.removeAll(recents);
       turn++;
-      score = 0;
-      for (int tilePos[] : placedTiles) {
-        String horoWord = grid.getHorizontalWord(tilePos[0], tilePos[1]);
-      }
     }
     counter = 0;
     flags = false;
     placedTiles.clear();
-    System.out.println("_________________________");
   }
 }
