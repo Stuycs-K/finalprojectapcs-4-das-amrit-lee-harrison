@@ -43,6 +43,7 @@ void setup() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
+  gameOver();
   System.out.println(flag);
   background(211, 211, 211);
   initializeBoard();
@@ -60,7 +61,16 @@ void draw() {
      textSize(30);
      text("" + player1.getScore(), 550, 720);
      text("" + player2.getScore(), 550, 775);
-
+    if (win1) {
+      background(211,211,211);
+      textSize(100);
+      text("Player 1 wins", 300, 300);
+    }
+    if (win2) {
+      background(211,211,211);
+      textSize(100);
+      text("Player 2 wins", 300, 300);
+    }
 }
 
 
@@ -167,8 +177,11 @@ void restockHand(Player player) {
 }
 
 void gameOver() {
-  if (player1.getScore() >= 100) {
+  if (player1.getScore() >= 10) {
     win1 = true;
+  }
+  if (player2.getScore() >= 10) {
+    win2 = true;
   }
 }
 
