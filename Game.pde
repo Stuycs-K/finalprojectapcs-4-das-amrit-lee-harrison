@@ -6,7 +6,8 @@ Dictionary dictionary = new Dictionary();
 ArrayList<int[]> placedTiles = new ArrayList<int[]> ();
 Board grid = new Board(dictionary);
 Player player1;
-//Player player2;
+Player player2;
+Player currentPlayer;
 tilePool tilePool;
 boolean flag = true;
 Tile selectedTile;
@@ -47,9 +48,9 @@ void draw() {
   if (flag) {
     drawRack(player1);
   }
-  //else{
-  //drawRack(player2);
-  //}
+  else{
+  drawRack(player2);
+  }
   for (int i =0; i < 15; i++) {
     for (int j = 0; j < 15; j++) {
       Tile tile = grid.getBoard(i, j);
@@ -94,13 +95,14 @@ void drawWarnings() {
 //creating the players
 void initializePlayers() {
   player1 = new Player("Player 1");
-  //player2 = new Player("Player 2");
+  player2 = new Player("Player 2");
   tilePool = new tilePool();
   restockHand(player1);
-  //restockHand(player2);
+  restockHand(player2);
 }
 
-
+void endTurn() {
+}
 
 
 
@@ -258,9 +260,7 @@ void mousePressed() {
       recents.removeAll(recents);
       turn++;
       score = 0;
-      for (int tilePos[] : placedTiles) {
-        String horoWord = grid.getHorizontalWord(tilePos[0], tilePos[1]);
-      }
+      flag = !flag;
     }
     counter = 0;
     flags = false;
