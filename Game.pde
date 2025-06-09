@@ -247,8 +247,10 @@ void mousePressed() {
     if (ver || hor) {
       int score = grid.additions(recents);
       player1.addScore(score);
+      System.out.println(score);
       restockHand(player1);
       turn++;
+      score = 0;
     }
     counter = 0;
     flags = false;

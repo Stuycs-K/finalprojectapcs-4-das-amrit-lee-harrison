@@ -150,7 +150,6 @@ class Board {
       for (int x : temp1) {
         Tile tile = board[x][y];
         if (tile != null) {
-          int letterscore = tile.getValue();
           int lettermult = 1;
           boolean isNew = false;
 
@@ -168,7 +167,8 @@ class Board {
               mult *= wordmultipliers[x][y];
             }
           }
-          retu+= letterscore * lettermult;
+          retu+= tile.getValue() * lettermult;
+          System.out.println(tile.getValue());
         }
 
 
@@ -183,6 +183,7 @@ class Board {
           mult *= wordmultipliers[x][y];
         }
       }
+      return retu;
     } else if (ver) {
       int x = placedTiles.get(0)[0];
       for (int y : temp2) {
