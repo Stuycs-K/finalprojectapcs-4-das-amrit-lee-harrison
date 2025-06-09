@@ -97,15 +97,17 @@ class Board {
     lettering();
     wording();
   }
-  public boolean wordlehor(ArrayList<int[]> placedTiles) {
+  public boolean wordlehor(ArrayList<int[]> placedTiles, int counter) {
     temp1.clear();
-    if (placedTiles.size() == 0) {
+    if (placedTiles.size() == 0 || counter == 0) {
       return false;
     }
     int startx = placedTiles.get(0)[0];
     int y = placedTiles.get(0)[1];
-    while (startx > 0 && board[startx - 1][y] != null) {
+    int steps = 0;
+    while (startx > 0 && steps < counter && board[startx - 1][y] != null) {
       startx--;
+      steps++;
     }
     String word = "";
     int x = startx;
@@ -114,19 +116,21 @@ class Board {
       temp1.add(x);
       x++;
     }
-    //System.out.println("Word(hor): " + word);
+    System.out.println("Word(hor): " + word);
     return dictionary.result(word);
   }
 
-  public boolean wordlever(ArrayList<int[]> placedTiles) {
+  public boolean wordlever(ArrayList<int[]> placedTiles, int counter) {
     temp2.clear();
-    if (placedTiles.size() == 0) {
+    if (placedTiles.size() == 0 || counter == 0) {
       return false;
     }
     int starty = placedTiles.get(0)[1];
     int x = placedTiles.get(0)[0];
-    while (starty > 0 && board[x][starty - 1] != null) {
+    int steps = 0;
+    while (starty > 0 && steps < counter && board[x][starty - 1] != null) {
       starty--;
+      steps++;
     }
     String word = "";
     int y = starty;
@@ -135,15 +139,15 @@ class Board {
       temp2.add(y);
       y++;
     }
-    //System.out.println("Word(ver): " + word);
+    System.out.println("Word(ver): " + word);
     return dictionary.result(word);
   }
-  public int additions(ArrayList<int[]> placedTiles) {
+  public int additions(ArrayList<int[]> placedTiles, int counter) {
     int retu = 0;
     int mult = 1;
 
-    boolean hor = wordlehor(placedTiles);
-    boolean ver = wordlever(placedTiles);
+    boolean hor = wordlehor(placedTiles, counter);
+    boolean ver = wordlever(placedTiles, counter);
 
 
     if (hor) {
@@ -178,7 +182,6 @@ class Board {
           lmulti = lettermultipliers[x][y];
         }
 
-        retu += tile.getValue() * lmulti;
 
         if (wordmultipliers[x][y] > 0) {
           mult *= wordmultipliers[x][y];
@@ -235,9 +238,9 @@ class Board {
       returnStr += board[i][y].getLetter();
     }
     return returnStr;
-}
+  }
 
- public String getVerticalWord(int x, int y) {
+  public String getVerticalWord(int x, int y) {
     int beginning = y;
     int ending = y;
     String returnStr = "";
@@ -253,5 +256,5 @@ class Board {
       returnStr += board[x][i].getLetter();
     }
     return returnStr;
-}
+  }
 }

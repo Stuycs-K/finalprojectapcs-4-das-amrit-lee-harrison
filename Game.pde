@@ -41,7 +41,7 @@ void setup() {
 
 //Method to draw the board when a tile has been placed on the board
 void draw() {
-  System.out.println(flag);
+  //System.out.println(flag);
   background(211, 211, 211);
   initializeBoard();
   drawConfirmButton();
@@ -236,16 +236,16 @@ void mousePressed() {
     for (int i = size - counter; i < size; i++) {
       recents.add(placedTiles.get(i));
     }
-    boolean hor = grid.wordlehor(recents);
+    boolean hor = grid.wordlehor(recents, counter);
     //System.out.println("hor:" +hor);
-    boolean ver = grid.wordlever(recents);
+    boolean ver = grid.wordlever(recents, counter);
     //System.out.println("veer:" + ver);
     if (ver || hor) {
       for (int[] pos : recents) {
         //System.out.println("Verify: " + pos[0] + ", " + pos[1]);
       }
       isVer = ver;
-      int score = grid.additions(recents);
+      int score = grid.additions(recents, counter);
       currentPlayer.addScore(score);
       score = 0;
       //System.out.println(score);
@@ -263,6 +263,6 @@ void mousePressed() {
     counter = 0;
     flags = false;
     placedTiles.clear();
-    System.out.println("_________________________");
+    //System.out.println("_________________________");
   }
 }

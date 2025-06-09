@@ -40,7 +40,7 @@ class Dictionary {
     if(!sorted){
       insertSort();
     }
-    System.out.println(input);
+    //System.out.println(input);
     int lo = 0;
     int end = possibilities.size() - 1;
     while (lo <= end) {
