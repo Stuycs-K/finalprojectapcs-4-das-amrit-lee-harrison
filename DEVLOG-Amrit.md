@@ -61,3 +61,8 @@ In- Class:
 
 30mins(class)- worked the debugging on the confirm button by testing using the printing of array coordinates
 10mins(class)- astarted to work during the class period on the issue of why the confirm button is not checking the dictionary if we have a word or not...which is an issue
+
+## Weekend of 2025-06-06
+
+1hr(home)- working on ensuring that the scoring calculator works as intended in the additions, wordlehor, wordlever functions which required serious debugging due to dictionary and logical flaws
+1hr(home)- working on debugging for logical issues in the scoring claculator and reforming the methods to take into account that scrabble words build off of already placed tiles
