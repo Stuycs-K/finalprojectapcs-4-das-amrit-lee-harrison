@@ -4,7 +4,7 @@ import java.io.*;
 class Player {
   private String name;
   private int score;
-  private ArrayList<Tile> hand = new ArrayList<Tile>(0);
+  public ArrayList<Tile> hand = new ArrayList<Tile>(0);
 
   public Player(String giveName) {
     name = giveName;
