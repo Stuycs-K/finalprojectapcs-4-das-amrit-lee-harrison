@@ -67,3 +67,5 @@ In- Class:
 1hr(home)- working on ensuring that the scoring calculator works as intended in the additions, wordlehor, wordlever functions which required serious debugging due to dictionary and logical flaws
 1hr(home)- working on debugging for logical issues in the scoring claculator and reforming the methods to take into account that scrabble words build off of already placed tiles
 1hr(home) -working with Harrison on last minute score debugging, rule setting, and video filming
+
+I believe this document accurately reflects the contributions of my teamate. - HARRISON
