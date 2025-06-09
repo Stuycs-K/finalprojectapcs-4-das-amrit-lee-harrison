@@ -56,7 +56,8 @@ void draw() {
     }
   }
      textSize(30);
-      text("" + currentPlayer.getScore(), 550, 750);
+     text("" + player1.getScore(), 550, 720);
+     text("" + player2.getScore(), 550, 775);
 
 }
 
@@ -127,25 +128,26 @@ void initializeBoard() {
   }
   noFill();
   //Multiplier key
-  rect(490, 600, 120, 120);
+  rect(490, 600, 120, 140);
   fill(0, 191, 255);
-  rect(500, 610, 15, 15);
-  textSize(15);
-  text("Double Letter", 560, 620);
+  rect(500, 605, 10, 10);
+  textSize(10);
+  text("Double Letter", 550, 610);
   fill(0, 128, 255);
-  rect(500, 635, 15, 15);
-  text("Triple Letter", 560, 645);
+  rect(500, 625, 10, 10);
+  text("Triple Letter", 550, 630);
   fill(255, 120, 0);
-  rect(500, 660, 15, 15);
-  text("Double Word", 560, 670);
+  rect(500, 645, 10, 10);
+  text("Double Word", 550, 650);
   fill(255, 0, 0);
-  rect(500, 690, 15, 15);
-  text("Triple Word", 560, 700);
+  rect(500, 665, 10, 10);
+  text("Triple Word", 550, 670);
   //Score's of players
   noFill();
-  rect(490, 720, 120, 120);
+  rect(490, 680, 120, 120);
   //line(490, 760, 600, 760);
-  text(currentPlayer.getName() + "score", 550, 730);
+  text("Player 1 Score", 550, 690);
+  text("Player 2 Score", 550, 750);
 }
 
 
@@ -235,21 +237,21 @@ void mousePressed() {
       recents.add(placedTiles.get(i));
     }
     boolean hor = grid.wordlehor(recents);
-    System.out.println("hor:" +hor);
+    //System.out.println("hor:" +hor);
     boolean ver = grid.wordlever(recents);
-    System.out.println("veer:" + ver);
+    //System.out.println("veer:" + ver);
     if (ver || hor) {
       for (int[] pos : recents) {
-        System.out.println("Verify: " + pos[0] + ", " + pos[1]);
+        //System.out.println("Verify: " + pos[0] + ", " + pos[1]);
       }
       isVer = ver;
       int score = grid.additions(recents);
       currentPlayer.addScore(score);
-      System.out.println(score);
+      score = 0;
+      //System.out.println(score);
       restockHand(currentPlayer);
       recents.removeAll(recents);
       turn++;
-      score = 0;
       if (currentPlayer == player1) {
         currentPlayer = player2;
       }
