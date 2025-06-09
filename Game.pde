@@ -21,10 +21,7 @@ int time1;
 boolean tileWarning;
 boolean flags = false;
 ArrayList<Tile> pendingTiles = new ArrayList<Tile>();
-<<<<<<< HEAD
-=======
 ArrayList<float[]> pendingTilesLocation = new ArrayList<float[]>();
->>>>>>> HarrisonBranch
 
 int lastx = 0;
 int lasty = 0;
@@ -274,11 +271,8 @@ void mousePressed() {
       restockHand(currentPlayer);
       recents.removeAll(recents);
       turn++;
-<<<<<<< HEAD
-=======
       pendingTilesLocation.clear();
       pendingTiles.clear();
->>>>>>> HarrisonBranch
       if (currentPlayer == player1) {
         currentPlayer = player2;
       }
@@ -288,11 +282,7 @@ void mousePressed() {
 
     }
     else {
-<<<<<<< HEAD
-      
-=======
       undoMove();
->>>>>>> HarrisonBranch
     }
     counter = 0;
     flags = false;
