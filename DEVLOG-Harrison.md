@@ -43,3 +43,6 @@ Spent 35 mins coding a way to display a text and then make it dissapear after a 
 **2025-06-03**
 **ClASS**
 Spent 35 minutes adding a way to display a warning when a tile isn't placed in the middle on the first turn.
+
+
+I believe this document accurately reflects the contributions of my teamate. -- Amrit Das; June 8, 2025
