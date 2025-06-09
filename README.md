@@ -18,4 +18,7 @@ Once the drawing is intitialised in Processing, you can start playing the game a
 - Then, you try to fill a word. You can go either vertical or perpendicular-- diagonal words DO NOT count. This is repeatedly putting the tile in the manner that you want.
 - Once you get a word, you hit the confirm button which will check if your word is valid and you are awarded points that you can see on the bottom right of your game setup. The player now switches.
 - Player 2 continues as normal, with the placing of tiles. YOU MAY NOT place tiles in a different section of the board. You MUST build words off of tiles that player 1 placed down as long as they follow the vertical and perpendicular behaviors.
+
+
+The amount to win is **35 points**
   

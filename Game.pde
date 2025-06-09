@@ -179,10 +179,10 @@ void restockHand(Player player) {
 }
 
 void gameOver() {
-  if (player1.getScore() >= 10) {
+  if (player1.getScore() >= 35) {
     win1 = true;
   }
-  if (player2.getScore() >= 10) {
+  if (player2.getScore() >= 35) {
     win2 = true;
   }
 }
